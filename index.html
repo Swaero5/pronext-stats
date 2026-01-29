@@ -23,10 +23,18 @@
         <canvas id="statsChart"></canvas>
     </div>
     <script>
-        fetch('stats.json')
-            .then(response => response.json())
+        // Utilisez l'URL brute de GitHub pour récupérer les données
+        const rawUrl = 'https://raw.githubusercontent.com/Swaero5/pronext-stats/main/stats.json';
+
+        fetch(rawUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP! statut: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(stats => {
-                // Extraire les dates et les compter
+                // Extraire les dates et compter les utilisateurs uniques
                 const dates = Object.keys(stats).sort();
                 const userCounts = dates.map(date => Object.keys(stats[date]).length);
 
@@ -76,7 +84,7 @@
             })
             .catch(error => {
                 console.error('Erreur lors de la récupération des statistiques:', error);
-                document.body.innerHTML += '<p style="color: red;">Erreur lors de la récupération des statistiques. Vérifiez que le fichier stats.json existe et est accessible.</p>';
+                document.body.innerHTML += `<p style="color: red;">Erreur lors de la récupération des statistiques: ${error.message}</p>`;
             });
     </script>
 </body>
