@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.TOKEN }}
 
       - name: Update stats
         run: |
@@ -16,24 +18,32 @@ jobs:
           USER_ID=${{ github.event.client_payload.user_id }}
           FILE="stats.json"
 
+          echo "Date: $DATE"
+          echo "User ID: $USER_ID"
+
           if [ ! -f "$FILE" ]; then
+            echo "Fichier $FILE non trouvé, création..."
             echo "{\"$DATE\": {\"$USER_ID\": 1}}" > $FILE
           else
-            # Vérifier si la date existe déjà
+            echo "Fichier $FILE trouvé, mise à jour..."
+            cat $FILE
+
             if jq -e --arg date "$DATE" 'has($date)' $FILE > /dev/null; then
-              # Vérifier si l'utilisateur existe déjà pour cette date
+              echo "La date $DATE existe déjà dans le fichier."
               if jq -e --arg date "$DATE" --arg user_id "$USER_ID" '.[$date] | has($user_id)' $FILE > /dev/null; then
-                # L'utilisateur existe déjà, ne rien faire
-                echo "Utilisateur déjà compté pour aujourd'hui"
+                echo "L'utilisateur $USER_ID existe déjà pour la date $DATE."
               else
-                # Ajouter l'utilisateur pour cette date
+                echo "Ajout de l'utilisateur $USER_ID pour la date $DATE."
                 jq --arg date "$DATE" --arg user_id "$USER_ID" '.[$date] += {($user_id): 1}' $FILE > temp.json && mv temp.json $FILE
               fi
             else
-              # Ajouter la date et l'utilisateur
+              echo "Ajout de la date $DATE et de l'utilisateur $USER_ID."
               jq --arg date "$DATE" --arg user_id "$USER_ID" '. + {($date): {($user_id): 1}}' $FILE > temp.json && mv temp.json $FILE
             fi
           fi
+
+          echo "Contenu mis à jour du fichier $FILE:"
+          cat $FILE
 
       - name: Commit and push changes
         run: |
@@ -41,4 +51,6 @@ jobs:
           git config --global user.email "actions@github.com"
           git add stats.json
           git commit -m "Mise à jour des statistiques pour ${{ github.event.client_payload.date }}"
-          git push
+          git push origin main
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
