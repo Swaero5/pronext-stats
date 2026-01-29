@@ -492,15 +492,6 @@
             // Peak users
             const peakUsers = Math.max(...allUserCounts);
             document.getElementById('peakUsers').textContent = peakUsers;
-
-            // Period range
-            const firstDate = allDates[0];
-            const lastDate = allDates[allDates.length - 1];
-            document.getElementById('periodRange').textContent = `${firstDate} → ${lastDate}`;
-
-            // Total activity
-            const totalInteractions = allUserCounts.reduce((a, b) => a + b, 0);
-            document.getElementById('totalActivity').textContent = totalInteractions.toLocaleString('fr-FR');
         }
 
         function createCharts() {
