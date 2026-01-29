@@ -3,17 +3,34 @@
 <head>
     <title>Statistiques Pronext</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@1.28.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.2.0"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .chart-container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
     <h1>Statistiques d'utilisation de Pronext</h1>
-    <canvas id="statsChart" width="400" height="200"></canvas>
+    <div class="chart-container">
+        <canvas id="statsChart"></canvas>
+    </div>
     <script>
         fetch('stats.json')
             .then(response => response.json())
             .then(stats => {
-                const dates = Object.keys(stats);
-                const counts = dates.map(date => Object.keys(stats[date]).length);
+                // Extraire les dates et les compter
+                const dates = Object.keys(stats).sort();
+                const userCounts = dates.map(date => Object.keys(stats[date]).length);
 
+                // Créer le graphique
                 const ctx = document.getElementById('statsChart').getContext('2d');
                 const chart = new Chart(ctx, {
                     type: 'bar',
@@ -21,20 +38,45 @@
                         labels: dates,
                         datasets: [{
                             label: 'Nombre d\'utilisateurs uniques quotidiens',
-                            data: counts,
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            data: userCounts,
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
                             borderColor: 'rgba(75, 192, 192, 1)',
                             borderWidth: 1
                         }]
                     },
                     options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
                         scales: {
                             y: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Nombre d\'utilisateurs uniques'
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Date'
+                                }
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.dataset.label}: ${context.raw}`;
+                                    }
+                                }
                             }
                         }
                     }
                 });
+            })
+            .catch(error => {
+                console.error('Erreur lors de la récupération des statistiques:', error);
+                document.body.innerHTML += '<p style="color: red;">Erreur lors de la récupération des statistiques. Vérifiez que le fichier stats.json existe et est accessible.</p>';
             });
     </script>
 </body>
