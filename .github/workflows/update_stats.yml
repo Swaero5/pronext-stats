@@ -1,0 +1,44 @@
+name: Update Stats
+
+on:
+  repository_dispatch:
+    types: [app_usage]
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Update stats
+        run: |
+          DATE=${{ github.event.client_payload.date }}
+          USER_ID=${{ github.event.client_payload.user_id }}
+          FILE="stats.json"
+
+          if [ ! -f "$FILE" ]; then
+            echo "{\"$DATE\": {\"$USER_ID\": 1}}" > $FILE
+          else
+            # Vérifier si la date existe déjà
+            if jq -e --arg date "$DATE" 'has($date)' $FILE > /dev/null; then
+              # Vérifier si l'utilisateur existe déjà pour cette date
+              if jq -e --arg date "$DATE" --arg user_id "$USER_ID" '.[$date] | has($user_id)' $FILE > /dev/null; then
+                # L'utilisateur existe déjà, ne rien faire
+                echo "Utilisateur déjà compté pour aujourd'hui"
+              else
+                # Ajouter l'utilisateur pour cette date
+                jq --arg date "$DATE" --arg user_id "$USER_ID" '.[$date] += {($user_id): 1}' $FILE > temp.json && mv temp.json $FILE
+              fi
+            else
+              # Ajouter la date et l'utilisateur
+              jq --arg date "$DATE" --arg user_id "$USER_ID" '. + {($date): {($user_id): 1}}' $FILE > temp.json && mv temp.json $FILE
+            fi
+          fi
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add stats.json
+          git commit -m "Mise à jour des statistiques pour ${{ github.event.client_payload.date }}"
+          git push
