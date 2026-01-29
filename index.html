@@ -3,11 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statistiques Pronext - Dashboard</title>
+    <title>Pronext Analytics</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/luxon@1.28.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.2.0"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --color-bg: #fafafa;
+            --color-surface: #ffffff;
+            --color-text-primary: #0a0a0a;
+            --color-text-secondary: #737373;
+            --color-text-tertiary: #a3a3a3;
+            --color-border: #e5e5e5;
+            --color-accent: #0066ff;
+            --color-accent-light: #e6f0ff;
+            --color-success: #10b981;
+            --color-chart-primary: #0066ff;
+            --color-chart-secondary: #6366f1;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,81 +35,173 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-            color: #333;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1440px;
             margin: 0 auto;
+            padding: 48px 24px;
         }
 
+        /* Header */
         header {
-            text-align: center;
-            margin-bottom: 40px;
-            color: white;
+            margin-bottom: 48px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
         }
 
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-text-primary);
+        }
+
+        .last-updated {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--color-text-tertiary);
+            background: var(--color-surface);
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--color-border);
         }
 
         .subtitle {
-            font-size: 1.1em;
-            opacity: 0.9;
+            font-size: 16px;
+            color: var(--color-text-secondary);
+            font-weight: 400;
         }
 
+        /* Stats Grid */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 32px;
         }
 
         .stat-card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.2s ease;
         }
 
         .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border-color: var(--color-accent);
+            box-shadow: var(--shadow-md);
         }
 
-        .stat-value {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            font-size: 0.9em;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .stat-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
         }
 
         .stat-icon {
-            font-size: 2em;
-            margin-bottom: 10px;
-            opacity: 0.7;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            background: var(--color-accent-light);
         }
 
-        .chart-container {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin-bottom: 30px;
+        .stat-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            line-height: 1;
+        }
+
+        .stat-change {
+            margin-top: 8px;
+            font-size: 13px;
+            color: var(--color-success);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Chart Container */
+        .chart-section {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .chart-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        /* Period Selector */
+        .period-selector {
+            display: inline-flex;
+            background: var(--color-bg);
+            border-radius: 8px;
+            padding: 4px;
+            gap: 4px;
+        }
+
+        .period-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            color: var(--color-text-secondary);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'DM Sans', sans-serif;
+            transition: all 0.2s ease;
+        }
+
+        .period-btn:hover {
+            color: var(--color-text-primary);
+            background: var(--color-surface);
+        }
+
+        .period-btn.active {
+            background: var(--color-accent);
+            color: white;
         }
 
         .chart-wrapper {
@@ -97,137 +209,171 @@
             height: 400px;
         }
 
-        .loading {
-            text-align: center;
-            padding: 50px;
-            color: white;
-            font-size: 1.2em;
+        /* Loading State */
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            gap: 16px;
         }
 
         .spinner {
-            border: 4px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top: 4px solid white;
             width: 40px;
             height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
+            border: 3px solid var(--color-border);
+            border-top-color: var(--color-accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            to { transform: rotate(360deg); }
         }
 
-        .error {
-            background: #ff4757;
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            text-align: center;
+        .loading-text {
+            color: var(--color-text-secondary);
+            font-size: 14px;
         }
 
-        .chart-title {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            color: #333;
+        /* Error State */
+        .error-container {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .error-title {
+            color: #991b1b;
             font-weight: 600;
+            margin-bottom: 8px;
         }
 
-        .period-selector {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+        .error-message {
+            color: #dc2626;
+            font-size: 14px;
         }
 
-        .period-btn {
-            padding: 10px 20px;
-            border: 2px solid #667eea;
-            background: white;
-            color: #667eea;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .period-btn:hover {
-            background: #667eea;
-            color: white;
-        }
-
-        .period-btn.active {
-            background: #667eea;
-            color: white;
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2em;
+            .container {
+                padding: 24px 16px;
             }
-            
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 12px;
+            }
+
             .stats-grid {
                 grid-template-columns: 1fr;
             }
-            
+
+            .chart-section {
+                padding: 20px;
+            }
+
             .chart-wrapper {
                 height: 300px;
             }
+
+            .period-selector {
+                width: 100%;
+            }
+
+            .period-btn {
+                flex: 1;
+            }
+        }
+
+        /* Hide content initially */
+        #content {
+            opacity: 0;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>📊 Statistiques Pronext</h1>
-            <p class="subtitle">Tableau de bord d'utilisation en temps réel</p>
+            <div class="header-content">
+                <div>
+                    <h1>Pronext Analytics</h1>
+                    <p class="subtitle">Tableau de bord des statistiques d'utilisation</p>
+                </div>
+                <div class="last-updated" id="lastUpdated">Chargement...</div>
+            </div>
         </header>
 
-        <div id="loading" class="loading">
+        <div id="loading" class="loading-container">
             <div class="spinner"></div>
-            <p>Chargement des statistiques...</p>
+            <p class="loading-text">Chargement des données...</p>
         </div>
 
         <div id="content" style="display: none;">
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-icon">👥</div>
-                    <div class="stat-value" id="totalUsers">-</div>
-                    <div class="stat-label">Utilisateurs Uniques</div>
+                    <div class="stat-header">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-label">Utilisateurs Totaux</div>
+                    </div>
+                    <div class="stat-value" id="totalUsers">—</div>
                 </div>
+
                 <div class="stat-card">
-                    <div class="stat-icon">📅</div>
-                    <div class="stat-value" id="totalDays">-</div>
-                    <div class="stat-label">Jours d'Activité</div>
+                    <div class="stat-header">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-label">Jours Actifs</div>
+                    </div>
+                    <div class="stat-value" id="totalDays">—</div>
                 </div>
+
                 <div class="stat-card">
-                    <div class="stat-icon">📈</div>
-                    <div class="stat-value" id="avgUsers">-</div>
-                    <div class="stat-label">Moyenne Quotidienne</div>
+                    <div class="stat-header">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-label">Moyenne/Jour</div>
+                    </div>
+                    <div class="stat-value" id="avgUsers">—</div>
                 </div>
+
                 <div class="stat-card">
-                    <div class="stat-icon">🔥</div>
-                    <div class="stat-value" id="peakUsers">-</div>
-                    <div class="stat-label">Record Journalier</div>
+                    <div class="stat-header">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-label">Record</div>
+                    </div>
+                    <div class="stat-value" id="peakUsers">—</div>
                 </div>
             </div>
 
-            <div class="chart-container">
-                <h2 class="chart-title">Utilisateurs Uniques par Jour</h2>
-                <div class="period-selector">
-                    <button class="period-btn active" onclick="filterData('all')">Tout</button>
-                    <button class="period-btn" onclick="filterData(30)">30 jours</button>
-                    <button class="period-btn" onclick="filterData(7)">7 jours</button>
+            <div class="chart-section">
+                <div class="chart-header">
+                    <h2 class="chart-title">Utilisateurs actifs par jour</h2>
+                    <div class="period-selector">
+                        <button class="period-btn" onclick="filterData(7)">7J</button>
+                        <button class="period-btn active" onclick="filterData(30)">30J</button>
+                        <button class="period-btn" onclick="filterData('all')">Tout</button>
+                    </div>
                 </div>
                 <div class="chart-wrapper">
                     <canvas id="dailyChart"></canvas>
                 </div>
             </div>
 
-            <div class="chart-container">
-                <h2 class="chart-title">Évolution Cumulative</h2>
+            <div class="chart-section">
+                <div class="chart-header">
+                    <h2 class="chart-title">Croissance cumulative</h2>
+                </div>
                 <div class="chart-wrapper">
                     <canvas id="cumulativeChart"></canvas>
                 </div>
@@ -244,10 +390,14 @@
 
         const rawUrl = 'https://raw.githubusercontent.com/Swaero5/pronext-stats/main/stats.json';
 
+        // Chart.js default config
+        Chart.defaults.font.family = "'DM Sans', sans-serif";
+        Chart.defaults.color = '#737373';
+
         fetch(rawUrl)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error(`Erreur HTTP! statut: ${response.status}`);
+                    throw new Error(`Erreur HTTP: ${response.status}`);
                 }
                 return response.json();
             })
@@ -259,49 +409,56 @@
                 updateSummaryStats();
                 createCharts();
 
+                // Update last updated time
+                const lastDate = allDates[allDates.length - 1];
+                document.getElementById('lastUpdated').textContent = `Mis à jour: ${lastDate}`;
+
+                // Show content
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('content').style.display = 'block';
             })
             .catch(error => {
                 console.error('Erreur:', error);
                 document.getElementById('loading').innerHTML = 
-                    `<div class="error">❌ Erreur lors de la récupération des statistiques: ${error.message}</div>`;
+                    `<div class="error-container">
+                        <div class="error-title">Erreur de chargement</div>
+                        <div class="error-message">${error.message}</div>
+                    </div>`;
             });
 
         function updateSummaryStats() {
-            // Total utilisateurs uniques
+            // Total unique users
             const allUsers = new Set();
             Object.values(statsData).forEach(day => {
                 Object.keys(day).forEach(user => allUsers.add(user));
             });
-            document.getElementById('totalUsers').textContent = allUsers.size;
+            document.getElementById('totalUsers').textContent = allUsers.size.toLocaleString();
 
-            // Total jours
+            // Total days
             document.getElementById('totalDays').textContent = allDates.length;
 
-            // Moyenne quotidienne
+            // Average daily users
             const avgUsers = (allUserCounts.reduce((a, b) => a + b, 0) / allUserCounts.length).toFixed(1);
             document.getElementById('avgUsers').textContent = avgUsers;
 
-            // Record journalier
+            // Peak users
             const peakUsers = Math.max(...allUserCounts);
             document.getElementById('peakUsers').textContent = peakUsers;
         }
 
         function createCharts() {
-            // Graphique quotidien
+            // Daily chart
             const ctxDaily = document.getElementById('dailyChart').getContext('2d');
             dailyChart = new Chart(ctxDaily, {
                 type: 'bar',
                 data: {
-                    labels: allDates,
+                    labels: allDates.slice(-30),
                     datasets: [{
-                        label: 'Utilisateurs uniques',
-                        data: allUserCounts,
-                        backgroundColor: 'rgba(102, 126, 234, 0.7)',
-                        borderColor: 'rgba(102, 126, 234, 1)',
-                        borderWidth: 2,
-                        borderRadius: 5
+                        label: 'Utilisateurs',
+                        data: allUserCounts.slice(-30),
+                        backgroundColor: '#0066ff',
+                        borderRadius: 4,
+                        borderSkipped: false
                     }]
                 },
                 options: {
@@ -312,37 +469,61 @@
                             display: false
                         },
                         tooltip: {
-                            backgroundColor: 'rgba(0,0,0,0.8)',
+                            backgroundColor: '#0a0a0a',
+                            titleColor: '#ffffff',
+                            bodyColor: '#ffffff',
                             padding: 12,
-                            titleFont: { size: 14 },
-                            bodyFont: { size: 13 }
+                            borderColor: '#262626',
+                            borderWidth: 1,
+                            displayColors: false,
+                            callbacks: {
+                                title: function(context) {
+                                    return context[0].label;
+                                },
+                                label: function(context) {
+                                    return `${context.parsed.y} utilisateur${context.parsed.y > 1 ? 's' : ''}`;
+                                }
+                            }
                         }
                     },
                     scales: {
                         y: {
                             beginAtZero: true,
+                            border: {
+                                display: false
+                            },
                             grid: {
-                                color: 'rgba(0,0,0,0.05)'
+                                color: '#f5f5f5',
+                                drawTicks: false
                             },
                             ticks: {
-                                font: { size: 12 }
+                                padding: 8,
+                                precision: 0
                             }
                         },
                         x: {
+                            border: {
+                                display: false
+                            },
                             grid: {
                                 display: false
                             },
                             ticks: {
-                                font: { size: 11 },
-                                maxRotation: 45,
-                                minRotation: 45
+                                padding: 8,
+                                maxRotation: 0,
+                                autoSkip: true,
+                                maxTicksLimit: 15
                             }
                         }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
                     }
                 }
             });
 
-            // Graphique cumulatif
+            // Cumulative chart
             const cumulativeData = [];
             let sum = 0;
             allUserCounts.forEach(count => {
@@ -356,15 +537,18 @@
                 data: {
                     labels: allDates,
                     datasets: [{
-                        label: 'Total cumulatif d\'interactions',
+                        label: 'Total cumulatif',
                         data: cumulativeData,
-                        borderColor: 'rgba(118, 75, 162, 1)',
-                        backgroundColor: 'rgba(118, 75, 162, 0.1)',
-                        borderWidth: 3,
+                        borderColor: '#0066ff',
+                        backgroundColor: 'rgba(0, 102, 255, 0.05)',
+                        borderWidth: 2,
                         fill: true,
-                        tension: 0.4,
-                        pointRadius: 3,
-                        pointHoverRadius: 6
+                        tension: 0.3,
+                        pointRadius: 0,
+                        pointHoverRadius: 6,
+                        pointHoverBackgroundColor: '#0066ff',
+                        pointHoverBorderColor: '#ffffff',
+                        pointHoverBorderWidth: 2
                     }]
                 },
                 options: {
@@ -375,32 +559,58 @@
                             display: false
                         },
                         tooltip: {
-                            backgroundColor: 'rgba(0,0,0,0.8)',
+                            backgroundColor: '#0a0a0a',
+                            titleColor: '#ffffff',
+                            bodyColor: '#ffffff',
                             padding: 12,
-                            titleFont: { size: 14 },
-                            bodyFont: { size: 13 }
+                            borderColor: '#262626',
+                            borderWidth: 1,
+                            displayColors: false,
+                            callbacks: {
+                                title: function(context) {
+                                    return context[0].label;
+                                },
+                                label: function(context) {
+                                    return `Total: ${context.parsed.y.toLocaleString()}`;
+                                }
+                            }
                         }
                     },
                     scales: {
                         y: {
                             beginAtZero: true,
+                            border: {
+                                display: false
+                            },
                             grid: {
-                                color: 'rgba(0,0,0,0.05)'
+                                color: '#f5f5f5',
+                                drawTicks: false
                             },
                             ticks: {
-                                font: { size: 12 }
+                                padding: 8,
+                                callback: function(value) {
+                                    return value.toLocaleString();
+                                }
                             }
                         },
                         x: {
+                            border: {
+                                display: false
+                            },
                             grid: {
                                 display: false
                             },
                             ticks: {
-                                font: { size: 11 },
-                                maxRotation: 45,
-                                minRotation: 45
+                                padding: 8,
+                                maxRotation: 0,
+                                autoSkip: true,
+                                maxTicksLimit: 15
                             }
                         }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
                     }
                 }
             });
@@ -426,7 +636,7 @@
 
             dailyChart.data.labels = filteredDates;
             dailyChart.data.datasets[0].data = filteredCounts;
-            dailyChart.update();
+            dailyChart.update('none');
         }
     </script>
 </body>
