@@ -342,6 +342,40 @@
         }
     </style>
 </head>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Les balises meta, title, styles et scripts CDN restent identiques -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronext Analytics</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@1.28.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.2.0"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <style>
+        /* Le CSS reste identique à ta version originale */
+        :root {
+            --color-bg: #f8f9fa;
+            --color-surface: #ffffff;
+            --color-text-primary: #111827;
+            --color-text-secondary: #6b7280;
+            --color-text-tertiary: #9ca3af;
+            --color-border: #e5e7eb;
+            --color-border-light: #f3f4f6;
+            --color-accent: #2563eb;
+            --color-accent-light: #dbeafe;
+            --color-accent-lighter: #eff6ff;
+            --color-success: #10b981;
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        /* ... (le reste du CSS) ... */
+    </style>
+</head>
 <body>
     <div class="container">
         <header>
@@ -356,6 +390,7 @@
 
         <div id="content" style="display: none;">
             <div class="stats-grid">
+                <!-- Les cartes de stats restent identiques -->
                 <div class="stat-card">
                     <div class="stat-header">
                         <div class="stat-icon">
@@ -401,6 +436,7 @@
                 </div>
             </div>
 
+            <!-- Graphique d'activité quotidienne (seul graphique conservé) -->
             <div class="chart-section">
                 <div class="chart-header">
                     <div class="chart-title-wrapper">
@@ -417,32 +453,18 @@
                     <canvas id="dailyChart"></canvas>
                 </div>
             </div>
-            <!--
-            <div class="chart-section">
-                <div class="chart-header">
-                    <div class="chart-title-wrapper">
-                        <h2 class="chart-title">Croissance cumulative</h2>
-                        <p class="chart-subtitle">Évolution du total d'interactions</p>
-                    </div>
-                </div>
-                <div class="chart-wrapper">
-                    <canvas id="cumulativeChart"></canvas>
-                </div>
-            </div>
-            -->
         </div>
     </div>
-
+    
     <script>
         let statsData = null;
-        let dailyChart = null;
-        let cumulativeChart = null;
+        let dailyChart = null; // Seul graphique conservé
         let allDates = [];
         let allUserCounts = [];
 
         const rawUrl = 'https://raw.githubusercontent.com/Swaero5/pronext-stats/main/stats.json?v=' + Date.now();
 
-        // Chart.js default config
+        // Configuration par défaut de Chart.js
         Chart.defaults.font.family = "'DM Sans', sans-serif";
         Chart.defaults.color = '#6b7280';
 
@@ -461,13 +483,13 @@
                 updateSummaryStats();
                 createCharts();
 
-                // Show content
+                // Afficher le contenu
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('content').style.display = 'block';
             })
             .catch(error => {
                 console.error('Erreur:', error);
-                document.getElementById('loading').innerHTML = 
+                document.getElementById('loading').innerHTML =
                     `<div class="error-container">
                         <div class="error-title">Erreur de chargement</div>
                         <div class="error-message">${error.message}</div>
@@ -475,31 +497,29 @@
             });
 
         function updateSummaryStats() {
-            // Total unique users
+            // Total des utilisateurs uniques
             const allUsers = new Set();
             Object.values(statsData).forEach(day => {
                 Object.keys(day).forEach(user => allUsers.add(user));
             });
             document.getElementById('totalUsers').textContent = allUsers.size.toLocaleString('fr-FR');
 
-            // Total days
+            // Nombre total de jours
             const totalDays = allDates.length;
             document.getElementById('totalDays').textContent = totalDays;
 
-            // Average daily users
+            // Moyenne quotidienne
             const avgUsers = (allUserCounts.reduce((a, b) => a + b, 0) / allUserCounts.length).toFixed(1);
             document.getElementById('avgUsers').textContent = avgUsers;
 
-            // Peak users
+            // Pic d'activité
             const peakUsers = Math.max(...allUserCounts);
             document.getElementById('peakUsers').textContent = peakUsers;
         }
 
         function createCharts() {
-            // Daily chart
+            // Graphique quotidien (seul graphique)
             const ctxDaily = document.getElementById('dailyChart').getContext('2d');
-            
-            // Create gradient
             const gradientDaily = ctxDaily.createLinearGradient(0, 0, 0, 400);
             gradientDaily.addColorStop(0, '#2563eb');
             gradientDaily.addColorStop(1, '#60a5fa');
@@ -591,16 +611,17 @@
                     }
                 }
             });
+        }
 
         function filterData(period) {
-            // Update active button
+            // Mise à jour du bouton actif
             document.querySelectorAll('.period-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             event.target.classList.add('active');
 
             let filteredDates, filteredCounts;
-            
+
             if (period === 'all') {
                 filteredDates = allDates;
                 filteredCounts = allUserCounts;
