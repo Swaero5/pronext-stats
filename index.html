@@ -484,9 +484,19 @@
                 </div>
             </div>
             <div class="credit-metric">
-                <div class="credit-metric-label">Total crédits</div>
+                <div class="credit-metric-label">Cette semaine</div>
+                <div class="credit-metric-value" id="weeklyCredits">—</div>
+                <div class="credit-metric-sub">crédits · 7 derniers jours</div>
+            </div>
+            <div class="credit-metric">
+                <div class="credit-metric-label">Ce mois-ci</div>
+                <div class="credit-metric-value" id="monthlyCredits">—</div>
+                <div class="credit-metric-sub">crédits · 30 derniers jours</div>
+            </div>
+            <div class="credit-metric">
+                <div class="credit-metric-label">Total cumulé</div>
                 <div class="credit-metric-value" id="totalCredits">—</div>
-                <div class="credit-metric-sub">cumulés tous utilisateurs</div>
+                <div class="credit-metric-sub">depuis le lancement</div>
             </div>
             <div class="credit-metric">
                 <div class="credit-metric-label">Moyenne / user</div>
@@ -494,13 +504,13 @@
                 <div class="credit-metric-sub">crédits par utilisateur</div>
             </div>
             <div class="credit-metric">
-                <div class="credit-metric-label">Utilisateur le + actif</div>
+                <div class="credit-metric-label">Record individuel</div>
                 <div class="credit-metric-value" id="maxCredits">—</div>
-                <div class="credit-metric-sub">crédits (record)</div>
+                <div class="credit-metric-sub">crédits (1 utilisateur)</div>
             </div>
         </div>
 
-        <!-- Top cities / operators charts -->
+        <!-- Top cities / regions -->
         <div class="charts-row">
             <div class="chart-card-sm">
                 <div class="chart-title">Top villes</div>
@@ -508,22 +518,11 @@
                 <div class="top-list" id="topCities"></div>
             </div>
             <div class="chart-card-sm">
-                <div class="chart-title">Top opérateurs</div>
-                <div class="chart-sub">Par nombre d'utilisateurs uniques</div>
-                <div class="top-list" id="topOperators"></div>
-            </div>
-        </div>
-
-        <!-- Regions chart -->
-        <div class="chart-card" style="margin-top:14px;">
-            <div class="chart-header">
-                <div>
-                    <div class="chart-title">Régions</div>
-                    <div class="chart-sub">Utilisateurs uniques par région</div>
+                <div class="chart-title">Régions</div>
+                <div class="chart-sub">Utilisateurs uniques par région</div>
+                <div class="chart-wrap-sm" style="margin-top:12px;">
+                    <canvas id="regionsChart"></canvas>
                 </div>
-            </div>
-            <div class="chart-wrap-sm">
-                <canvas id="regionsChart"></canvas>
             </div>
         </div>
 
@@ -639,9 +638,10 @@
         const allUsers    = new Set();
         const cityCount   = {};
         const regionCount = {};
-        const opCount     = {};
-        // Track best credits per user (latest value)
-        const userCredits = {};
+        // Track latest credits per user (overwrite on each day → most recent value)
+        const userTotalCredits   = {};
+        const userWeeklyCredits  = {};
+        const userMonthlyCredits = {};
 
         Object.entries(statsData).forEach(([, day]) => {
             Object.entries(day).forEach(([uid, val]) => {
@@ -651,13 +651,13 @@
                 if (typeof val === 'object' && val !== null) {
                     const city   = val.city   || 'Inconnue';
                     const region = val.region || 'Inconnue';
-                    const op     = val.operator || 'Inconnu';
-                    const cr     = val.total_ai_credits ?? 0;
 
-                    cityCount[city]     = (cityCount[city]   || new Set());   cityCount[city].add(uid);
+                    cityCount[city]     = (cityCount[city]   || new Set()); cityCount[city].add(uid);
                     regionCount[region] = (regionCount[region] || new Set()); regionCount[region].add(uid);
-                    opCount[op]         = (opCount[op]        || new Set());  opCount[op].add(uid);
-                    userCredits[uid]    = cr; // overwrite → last known value
+
+                    userTotalCredits[uid]   = val.total_ai_credits   ?? 0;
+                    userWeeklyCredits[uid]  = val.weekly_ai_credits  ?? 0;
+                    userMonthlyCredits[uid] = val.monthly_ai_credits ?? 0;
                 }
             });
         });
@@ -696,19 +696,25 @@
         const ret = Object.values(userDays).filter(c => c > 1).length;
         document.getElementById('returningUsers').textContent = ret;
 
-        // Credits
-        const creditsArr  = Object.values(userCredits);
-        const totalCr     = creditsArr.reduce((a, b) => a + b, 0);
-        const avgCr       = creditsArr.length ? (totalCr / creditsArr.length).toFixed(1) : '—';
-        const maxCr       = creditsArr.length ? Math.max(...creditsArr) : '—';
-        document.getElementById('totalCredits').textContent = totalCr.toLocaleString('fr-FR');
-        document.getElementById('avgCredits').textContent   = avgCr;
-        document.getElementById('maxCredits').textContent   = typeof maxCr === 'number' ? maxCr.toLocaleString('fr-FR') : maxCr;
+        // Credits — total (latest known per user, overwritten each day)
+        const totalArr   = Object.values(userTotalCredits);
+        const weeklyArr  = Object.values(userWeeklyCredits);
+        const monthlyArr = Object.values(userMonthlyCredits);
+
+        const sumTotal   = totalArr.reduce((a, b) => a + b, 0);
+        const sumWeekly  = weeklyArr.reduce((a, b) => a + b, 0);
+        const sumMonthly = monthlyArr.reduce((a, b) => a + b, 0);
+        const avgTotal   = totalArr.length ? (sumTotal / totalArr.length).toFixed(1) : '—';
+        const maxTotal   = totalArr.length ? Math.max(...totalArr) : '—';
+
+        document.getElementById('totalCredits').textContent   = sumTotal.toLocaleString('fr-FR');
+        document.getElementById('weeklyCredits').textContent  = sumWeekly.toLocaleString('fr-FR');
+        document.getElementById('monthlyCredits').textContent = sumMonthly.toLocaleString('fr-FR');
+        document.getElementById('avgCredits').textContent     = avgTotal;
+        document.getElementById('maxCredits').textContent     = typeof maxTotal === 'number' ? maxTotal.toLocaleString('fr-FR') : maxTotal;
 
         // Top cities
         buildTopList('topCities', cityCount, 'teal-bar');
-        // Top operators
-        buildTopList('topOperators', opCount, 'purple-bar');
         // Regions chart data (stored for chart build)
         window._regionData = regionCount;
     }
