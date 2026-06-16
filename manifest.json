@@ -1,6 +1,6 @@
 {
   "name": "Pronext Stats",
-  "short_name": "Pronext",
+  "short_name": "Pronext Stats",
   "start_url": "/pronext-stats/",
   "scope": "/pronext-stats/",
   "display": "standalone",
