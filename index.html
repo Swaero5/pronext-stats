@@ -83,8 +83,6 @@
             line-height: 1;
         }
 
-
-
         body {
             font-family: 'Nunito Sans', system-ui, sans-serif;
             background: var(--bg);
@@ -109,48 +107,29 @@
             gap: 12px;
         }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .brand { display: flex; align-items: center; gap: 12px; }
 
         .brand-icon {
-            width: 44px;
-            height: 44px;
+            width: 44px; height: 44px;
             background: var(--teal-mid);
             border-radius: var(--r-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             font-family: 'Nunito', sans-serif;
-            font-weight: 800;
-            font-size: 18px;
-            color: white;
+            font-weight: 800; font-size: 18px; color: white;
             letter-spacing: -0.02em;
         }
 
-        .brand-text {}
         .brand-name {
             font-family: 'Nunito', sans-serif;
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--text-1);
-            letter-spacing: -0.02em;
-            line-height: 1.1;
+            font-size: 20px; font-weight: 800;
+            color: var(--text-1); letter-spacing: -0.02em; line-height: 1.1;
         }
-        .brand-sub {
-            font-size: 12px;
-            color: var(--text-3);
-            font-weight: 500;
-        }
+        .brand-sub { font-size: 12px; color: var(--text-3); font-weight: 500; }
 
         .header-date {
-            font-size: 13px;
-            color: var(--text-3);
+            font-size: 13px; color: var(--text-3);
             background: var(--surface);
-            padding: 8px 14px;
-            border-radius: 40px;
+            padding: 8px 14px; border-radius: 40px;
             border: 1px solid var(--border);
         }
 
@@ -158,90 +137,36 @@
         .age-card {
             background: var(--teal-fill);
             border-radius: var(--r-lg);
-            padding: 20px 24px;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
+            padding: 20px 24px; margin-bottom: 24px;
+            display: flex; align-items: center; flex-wrap: wrap; gap: 20px;
         }
 
-        .age-main {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .age-main { display: flex; align-items: center; gap: 10px; }
 
         .age-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--teal-mid);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
+            width: 40px; height: 40px;
+            background: var(--teal-mid); border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; font-size: 20px;
         }
 
-        .age-label {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--teal-mid);
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-        }
-
-        .age-value {
-            font-family: 'Nunito', sans-serif;
-            font-size: 22px;
-            font-weight: 800;
-            color: var(--teal-dark);
-            letter-spacing: -0.01em;
-        }
-
-        .age-divider {
-            width: 1px;
-            height: 36px;
-            background: var(--teal-mid);
-            opacity: 0.2;
-        }
-
-        .age-fields {
-            display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
-        }
-
-        .age-field {}
-        .age-field-label {
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--teal-mid);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            opacity: 0.75;
-        }
-        .age-field-value {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--teal-dark);
-            font-family: 'Nunito', sans-serif;
-        }
+        .age-label { font-size: 12px; font-weight: 600; color: var(--teal-mid); text-transform: uppercase; letter-spacing: 0.06em; }
+        .age-value { font-family: 'Nunito', sans-serif; font-size: 22px; font-weight: 800; color: var(--teal-dark); letter-spacing: -0.01em; }
+        .age-divider { width: 1px; height: 36px; background: var(--teal-mid); opacity: 0.2; }
+        .age-fields { display: flex; gap: 24px; flex-wrap: wrap; }
+        .age-field-label { font-size: 11px; font-weight: 600; color: var(--teal-mid); text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.75; }
+        .age-field-value { font-size: 14px; font-weight: 700; color: var(--teal-dark); font-family: 'Nunito', sans-serif; }
 
         /* ── Stat cards ── */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 14px;
-            margin-bottom: 14px;
+            gap: 14px; margin-bottom: 14px;
         }
 
         .stat-card {
             border-radius: var(--r-md);
             padding: 22px 20px 18px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
+            display: flex; flex-direction: column; gap: 4px;
         }
 
         .stat-card.teal   { background: var(--teal-fill); }
@@ -252,14 +177,9 @@
         .stat-card.green  { background: var(--green-fill); }
 
         .card-icon {
-            font-size: 20px;
-            margin-bottom: 10px;
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 20px; margin-bottom: 10px;
+            width: 36px; height: 36px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
         }
         .teal   .card-icon { background: var(--teal-mid);   color: white; }
         .amber  .card-icon { background: var(--amber-mid);  color: white; }
@@ -268,12 +188,7 @@
         .blue   .card-icon { background: var(--blue-mid);   color: white; }
         .green  .card-icon { background: var(--green-mid);  color: white; }
 
-        .card-label {
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
+        .card-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
         .teal   .card-label { color: var(--teal-mid); }
         .amber  .card-label { color: var(--amber-mid); }
         .coral  .card-label { color: var(--coral-mid); }
@@ -283,11 +198,8 @@
 
         .card-value {
             font-family: 'Nunito', sans-serif;
-            font-size: 36px;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1;
-            margin: 4px 0 2px;
+            font-size: 36px; font-weight: 800;
+            letter-spacing: -0.03em; line-height: 1; margin: 4px 0 2px;
         }
         .teal   .card-value { color: var(--teal-dark); }
         .amber  .card-value { color: var(--amber-dark); }
@@ -296,10 +208,7 @@
         .blue   .card-value { color: var(--blue-dark); }
         .green  .card-value { color: var(--green-dark); }
 
-        .card-sub {
-            font-size: 12px;
-            opacity: 0.65;
-        }
+        .card-sub { font-size: 12px; opacity: 0.65; }
         .teal   .card-sub { color: var(--teal-dark); }
         .amber  .card-sub { color: var(--amber-dark); }
         .coral  .card-sub { color: var(--coral-dark); }
@@ -308,14 +217,9 @@
         .green  .card-sub { color: var(--green-dark); }
 
         .card-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            margin-top: 8px;
-            padding: 3px 10px;
-            border-radius: 40px;
-            font-size: 11px;
-            font-weight: 700;
+            display: inline-flex; align-items: center; gap: 4px;
+            margin-top: 8px; padding: 3px 10px; border-radius: 40px;
+            font-size: 11px; font-weight: 700;
         }
         .badge-up   { background: #d1fae5; color: #065f46; }
         .badge-down { background: #fee2e2; color: #991b1b; }
@@ -331,107 +235,128 @@
         }
 
         .chart-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 12px;
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
         }
 
-        .chart-title {
-            font-family: 'Nunito', sans-serif;
-            font-size: 17px;
-            font-weight: 800;
-            color: var(--text-1);
-            letter-spacing: -0.01em;
-        }
+        .chart-title { font-family: 'Nunito', sans-serif; font-size: 17px; font-weight: 800; color: var(--text-1); letter-spacing: -0.01em; }
+        .chart-sub { font-size: 12px; color: var(--text-3); margin-top: 2px; }
 
-        .chart-sub {
-            font-size: 12px;
-            color: var(--text-3);
-            margin-top: 2px;
-        }
-
-        .period-row {
-            display: flex;
-            gap: 6px;
-        }
+        .period-row { display: flex; gap: 6px; }
 
         .period-btn {
             padding: 7px 16px;
             border: 1.5px solid var(--border);
-            background: transparent;
-            color: var(--text-2);
-            border-radius: 40px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 700;
-            font-family: 'Nunito', sans-serif;
+            background: transparent; color: var(--text-2);
+            border-radius: 40px; cursor: pointer;
+            font-size: 13px; font-weight: 700; font-family: 'Nunito', sans-serif;
             transition: all 0.15s;
         }
+        .period-btn.active { background: var(--teal-mid); border-color: var(--teal-mid); color: white; }
 
-        .period-btn.active {
-            background: var(--teal-mid);
-            border-color: var(--teal-mid);
-            color: white;
+        .chart-wrap { height: 300px; position: relative; }
+
+        /* ── Two-column charts ── */
+        .charts-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 14px;
         }
 
-        .chart-wrap {
-            height: 300px;
+        .chart-card-sm {
+            background: var(--surface);
+            border-radius: var(--r-lg);
+            padding: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .chart-wrap-sm { height: 220px; position: relative; }
+
+        /* ── Top lists ── */
+        .top-list { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+
+        .top-item {
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        .top-rank {
+            font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 13px;
+            color: var(--text-3); width: 18px; flex-shrink: 0; text-align: right;
+        }
+
+        .top-bar-wrap {
+            flex: 1; height: 28px; background: var(--bg); border-radius: 8px; overflow: hidden;
             position: relative;
         }
 
+        .top-bar {
+            height: 100%; border-radius: 8px;
+            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .teal-bar   { background: var(--teal-fill); }
+        .purple-bar { background: var(--purple-fill); }
+        .amber-bar  { background: var(--amber-fill); }
+
+        .top-bar-label {
+            position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+            font-size: 12px; font-weight: 700; color: var(--text-1);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            max-width: calc(100% - 50px);
+        }
+
+        .top-bar-count {
+            position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+            font-size: 12px; font-weight: 700; color: var(--text-2);
+        }
+
+        /* ── Credits card ── */
+        .credits-card {
+            background: var(--purple-fill);
+            border-radius: var(--r-lg);
+            padding: 24px;
+            margin-top: 14px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .credit-metric {}
+        .credit-metric-label {
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.05em; color: var(--purple-mid); margin-bottom: 4px;
+        }
+        .credit-metric-value {
+            font-family: 'Nunito', sans-serif; font-size: 30px; font-weight: 800;
+            color: var(--purple-dark); letter-spacing: -0.03em; line-height: 1;
+        }
+        .credit-metric-sub { font-size: 12px; color: var(--purple-dark); opacity: 0.65; margin-top: 2px; }
+
         /* ── Footer ── */
         .footer {
-            margin-top: 48px;
-            padding: 20px 24px;
-            background: var(--surface);
-            border-radius: var(--r-md);
+            margin-top: 48px; padding: 20px 24px;
+            background: var(--surface); border-radius: var(--r-md);
             border: 1px solid var(--border);
-            display: flex;
-            gap: 14px;
-            align-items: flex-start;
+            display: flex; gap: 14px; align-items: flex-start;
         }
-
-        .footer-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--teal-mid);
-            flex-shrink: 0;
-            margin-top: 5px;
-        }
-
-        .footer-title {
-            font-weight: 700;
-            font-size: 14px;
-            margin-bottom: 4px;
-            color: var(--text-1);
-        }
+        .footer-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--teal-mid); flex-shrink: 0; margin-top: 5px; }
+        .footer-title { font-weight: 700; font-size: 14px; margin-bottom: 4px; color: var(--text-1); }
         .footer-body { font-size: 13px; color: var(--text-2); line-height: 1.6; }
 
         /* ── Loading ── */
-        .loading-wrap {
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            min-height: 50vh; gap: 16px;
-        }
-        .spinner {
-            width: 40px; height: 40px;
-            border: 3px solid var(--border);
-            border-top-color: var(--teal-mid);
-            border-radius: 50%;
-            animation: spin 0.7s linear infinite;
-        }
+        .loading-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh; gap: 16px; }
+        .spinner { width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: var(--teal-mid); border-radius: 50%; animation: spin 0.7s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
         .loading-text { font-size: 14px; color: var(--text-3); font-weight: 600; }
 
-        @media (max-width: 560px) {
+        @media (max-width: 680px) {
             .page { padding: 24px 14px 60px; }
             .cards-grid { grid-template-columns: 1fr 1fr; }
+            .charts-row { grid-template-columns: 1fr; }
             .chart-wrap { height: 220px; }
             .age-divider { display: none; }
+            .credits-card { grid-template-columns: 1fr 1fr; }
         }
 
         #content { opacity: 0; animation: fadeIn 0.35s ease 0.05s forwards; }
@@ -461,6 +386,7 @@
             <div class="header-date" id="headerDate">—</div>
         </header>
 
+        <!-- Age banner -->
         <div class="age-card">
             <div class="age-main">
                 <div class="age-icon"><span class="material-symbols-rounded" style="color:white">schedule</span></div>
@@ -480,12 +406,13 @@
                     <div class="age-field-value" id="lastDate">—</div>
                 </div>
                 <div class="age-field">
-                    <div class="age-field-label">inactivité</div>
+                    <div class="age-field-label">Inactivité</div>
                     <div class="age-field-value" id="daysSinceLast">—</div>
                 </div>
             </div>
         </div>
 
+        <!-- Stat cards -->
         <div class="cards-grid">
             <div class="stat-card teal">
                 <div class="card-icon"><span class="material-symbols-rounded">group</span></div>
@@ -525,6 +452,7 @@
             </div>
         </div>
 
+        <!-- Daily activity chart -->
         <div class="chart-card">
             <div class="chart-header">
                 <div>
@@ -542,6 +470,81 @@
             </div>
         </div>
 
+        <!-- AI Credits card -->
+        <div class="credits-card">
+            <div>
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+                    <div style="width:36px;height:36px;border-radius:10px;background:var(--purple-mid);display:flex;align-items:center;justify-content:center;">
+                        <span class="material-symbols-rounded" style="color:white">auto_awesome</span>
+                    </div>
+                    <div>
+                        <div style="font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--purple-dark);">Crédits IA</div>
+                        <div style="font-size:12px;color:var(--purple-mid);opacity:0.8;">Utilisation de l'IA</div>
+                    </div>
+                </div>
+            </div>
+            <div class="credit-metric">
+                <div class="credit-metric-label">Total crédits</div>
+                <div class="credit-metric-value" id="totalCredits">—</div>
+                <div class="credit-metric-sub">cumulés tous utilisateurs</div>
+            </div>
+            <div class="credit-metric">
+                <div class="credit-metric-label">Moyenne / user</div>
+                <div class="credit-metric-value" id="avgCredits">—</div>
+                <div class="credit-metric-sub">crédits par utilisateur</div>
+            </div>
+            <div class="credit-metric">
+                <div class="credit-metric-label">Utilisateur le + actif</div>
+                <div class="credit-metric-value" id="maxCredits">—</div>
+                <div class="credit-metric-sub">crédits (record)</div>
+            </div>
+        </div>
+
+        <!-- Top cities / operators charts -->
+        <div class="charts-row">
+            <div class="chart-card-sm">
+                <div class="chart-title">Top villes</div>
+                <div class="chart-sub">Par nombre d'utilisateurs uniques</div>
+                <div class="top-list" id="topCities"></div>
+            </div>
+            <div class="chart-card-sm">
+                <div class="chart-title">Top opérateurs</div>
+                <div class="chart-sub">Par nombre d'utilisateurs uniques</div>
+                <div class="top-list" id="topOperators"></div>
+            </div>
+        </div>
+
+        <!-- Regions chart -->
+        <div class="chart-card" style="margin-top:14px;">
+            <div class="chart-header">
+                <div>
+                    <div class="chart-title">Régions</div>
+                    <div class="chart-sub">Utilisateurs uniques par région</div>
+                </div>
+            </div>
+            <div class="chart-wrap-sm">
+                <canvas id="regionsChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Credits over time -->
+        <div class="chart-card">
+            <div class="chart-header">
+                <div>
+                    <div class="chart-title">Crédits IA par jour</div>
+                    <div class="chart-sub">Total des crédits utilisés par jour</div>
+                </div>
+                <div class="period-row">
+                    <button class="period-btn" onclick="filterCredits(7,this)">7 jours</button>
+                    <button class="period-btn active" onclick="filterCredits(30,this)">30 jours</button>
+                    <button class="period-btn" onclick="filterCredits('all',this)">Tout</button>
+                </div>
+            </div>
+            <div class="chart-wrap">
+                <canvas id="creditsChart"></canvas>
+            </div>
+        </div>
+
         <footer class="footer">
             <div class="footer-dot"></div>
             <div>
@@ -554,25 +557,49 @@
 </div>
 
 <script>
-    let statsData = null, dailyChart = null;
-    let allDates = [], allCounts = [];
+    let statsData = null;
+    let dailyChart = null, creditsChart = null, regionsChart = null;
+    let allDates = [], allCounts = [], allCredits = [];
 
     const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const TEAL = '#1D9E75';
-    const TEAL_DIM = isDark ? 'rgba(29,158,117,0.2)' : 'rgba(29,158,117,0.15)';
+    const TEAL      = '#1D9E75';
+    const TEAL_DIM  = isDark ? 'rgba(29,158,117,0.2)' : 'rgba(29,158,117,0.15)';
+    const PURPLE    = '#7F77DD';
+    const PURPLE_DIM = isDark ? 'rgba(127,119,221,0.2)' : 'rgba(127,119,221,0.15)';
     const GRID = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
     const TICK = isDark ? '#57534e' : '#a8a29e';
 
     Chart.defaults.font.family = "'Nunito Sans', system-ui, sans-serif";
 
+    // ── Helpers ──────────────────────────────────────────
+    function fmt(s) { const [y,m,d] = s.split('-'); return `${d}/${m}/${y}`; }
+
+    function getUserValue(userObj, field) {
+        // Support both old format {user: 1} and new format {user: {city,region,operator,total_ai_credits}}
+        if (typeof userObj === 'object' && userObj !== null) return userObj[field] ?? null;
+        return null;
+    }
+
+    function isNewFormat(dayData) {
+        const firstVal = Object.values(dayData)[0];
+        return typeof firstVal === 'object' && firstVal !== null && typeof firstVal !== 'number';
+    }
+
+    // ── Fetch ────────────────────────────────────────────
     fetch('https://raw.githubusercontent.com/Swaero5/pronext-stats/main/stats.json?v=' + Date.now())
         .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
         .then(data => {
             statsData = data;
             allDates = Object.keys(data).sort();
             allCounts = allDates.map(d => Object.keys(data[d]).length);
+            allCredits = allDates.map(d => {
+                return Object.values(data[d]).reduce((sum, v) => {
+                    const c = typeof v === 'object' && v !== null ? (v.total_ai_credits ?? 0) : 0;
+                    return sum + c;
+                }, 0);
+            });
             buildStats();
-            buildChart();
+            buildCharts();
             document.getElementById('loading').style.display = 'none';
             document.getElementById('content').style.display = 'block';
         })
@@ -584,83 +611,158 @@
                 </div>`;
         });
 
-    function fmt(s) { const [y,m,d] = s.split('-'); return `${d}/${m}/${y}`; }
-
+    // ── Stats ────────────────────────────────────────────
     function buildStats() {
         const today = new Date(); today.setHours(0,0,0,0);
         const first = new Date(allDates[0]);
         const last  = new Date(allDates[allDates.length-1]);
 
-        const ageDays = Math.floor((today-first)/86400000);
-        const ageWks  = Math.floor(ageDays/7);
-        const ageMos  = Math.floor(ageDays/30);
-        const ageStr = ageDays < 7 ? `${ageDays} jour${ageDays>1?'s':''}` :
-                       ageDays < 60 ? `${ageWks} semaine${ageWks>1?'s':''}` :
-                       `${ageMos} mois`;
+        const ageDays = Math.floor((today - first) / 86400000);
+        const ageWks  = Math.floor(ageDays / 7);
+        const ageMos  = Math.floor(ageDays / 30);
+        const ageStr  = ageDays < 7  ? `${ageDays} jour${ageDays > 1 ? 's' : ''}` :
+                        ageDays < 60 ? `${ageWks} semaine${ageWks > 1 ? 's' : ''}` :
+                        `${ageMos} mois`;
 
-        document.getElementById('appAge').textContent = ageStr;
+        document.getElementById('appAge').textContent    = ageStr;
         document.getElementById('firstDate').textContent = fmt(allDates[0]);
-        document.getElementById('lastDate').textContent  = fmt(allDates[allDates.length-1]);
-        const sinceL = Math.floor((today-last)/86400000);
+        document.getElementById('lastDate').textContent  = fmt(allDates[allDates.length - 1]);
+        const sinceL = Math.floor((today - last) / 86400000);
         document.getElementById('daysSinceLast').textContent =
-            sinceL === 0 ? "Aujourd'hui" : sinceL === 1 ? 'Hier' : `Il y a ${sinceL} jour${sinceL>1?'s':''}`;
+            sinceL === 0 ? "Aujourd'hui" : sinceL === 1 ? 'Hier' : `Il y a ${sinceL} jour${sinceL > 1 ? 's' : ''}`;
 
         document.getElementById('headerDate').textContent =
-            'Mis à jour le ' + today.toLocaleDateString('fr-FR', {day:'numeric', month:'long'});
+            'Mis à jour le ' + today.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
 
-        const userDays = {};
-        const allUsers = new Set();
-        Object.entries(statsData).forEach(([,day]) => Object.keys(day).forEach(u => {
-            allUsers.add(u);
-            userDays[u] = (userDays[u]||0)+1;
-        }));
+        // Aggregate users
+        const userDays    = {};
+        const allUsers    = new Set();
+        const cityCount   = {};
+        const regionCount = {};
+        const opCount     = {};
+        // Track best credits per user (latest value)
+        const userCredits = {};
+
+        Object.entries(statsData).forEach(([, day]) => {
+            Object.entries(day).forEach(([uid, val]) => {
+                allUsers.add(uid);
+                userDays[uid] = (userDays[uid] || 0) + 1;
+
+                if (typeof val === 'object' && val !== null) {
+                    const city   = val.city   || 'Inconnue';
+                    const region = val.region || 'Inconnue';
+                    const op     = val.operator || 'Inconnu';
+                    const cr     = val.total_ai_credits ?? 0;
+
+                    cityCount[city]     = (cityCount[city]   || new Set());   cityCount[city].add(uid);
+                    regionCount[region] = (regionCount[region] || new Set()); regionCount[region].add(uid);
+                    opCount[op]         = (opCount[op]        || new Set());  opCount[op].add(uid);
+                    userCredits[uid]    = cr; // overwrite → last known value
+                }
+            });
+        });
 
         document.getElementById('totalUsers').textContent = allUsers.size;
 
         const active = allDates.length;
-        document.getElementById('totalDays').textContent = active;
+        document.getElementById('totalDays').textContent    = active;
         document.getElementById('activeDaysSub').textContent = `sur ${ageDays} jours calendaires`;
 
-        const peak = Math.max(...allCounts);
+        const peak    = Math.max(...allCounts);
         const peakIdx = allCounts.indexOf(peak);
         document.getElementById('peakUsers').textContent = peak;
         document.getElementById('peakDate').textContent  = `le ${fmt(allDates[peakIdx])}`;
 
-        const avg = (allCounts.reduce((a,b)=>a+b,0)/allCounts.length).toFixed(1);
+        const avg = (allCounts.reduce((a, b) => a + b, 0) / allCounts.length).toFixed(1);
         document.getElementById('avgUsers').textContent = avg;
 
-        const last7 = allCounts.slice(-7).reduce((a,b)=>a+b,0);
-        const prev7 = allCounts.slice(-14,-7).reduce((a,b)=>a+b,0);
+        const last7 = allCounts.slice(-7).reduce((a, b) => a + b, 0);
+        const prev7 = allCounts.slice(-14, -7).reduce((a, b) => a + b, 0);
         const gEl = document.getElementById('growthValue');
         const bEl = document.getElementById('growthBadge');
         if (prev7 === 0 && last7 === 0) {
             gEl.textContent = '—';
         } else if (prev7 === 0) {
             gEl.textContent = '+' + last7;
-            bEl.innerHTML = `<span class="card-badge badge-up">↑ Nouveau</span>`;
+            bEl.innerHTML   = `<span class="card-badge badge-up">↑ Nouveau</span>`;
         } else {
-            const pct = Math.round(((last7-prev7)/prev7)*100);
-            gEl.textContent = (pct>=0?'+':'') + pct + '%';
-            if (pct>0) bEl.innerHTML = `<span class="card-badge badge-up">↑ vs période préc.</span>`;
-            else if (pct<0) bEl.innerHTML = `<span class="card-badge badge-down">↓ vs période préc.</span>`;
-            else bEl.innerHTML = `<span class="card-badge badge-flat">Stable</span>`;
+            const pct = Math.round(((last7 - prev7) / prev7) * 100);
+            gEl.textContent = (pct >= 0 ? '+' : '') + pct + '%';
+            if (pct > 0)      bEl.innerHTML = `<span class="card-badge badge-up">↑ vs période préc.</span>`;
+            else if (pct < 0) bEl.innerHTML = `<span class="card-badge badge-down">↓ vs période préc.</span>`;
+            else              bEl.innerHTML = `<span class="card-badge badge-flat">Stable</span>`;
         }
 
-        const ret = Object.values(userDays).filter(c=>c>1).length;
+        const ret = Object.values(userDays).filter(c => c > 1).length;
         document.getElementById('returningUsers').textContent = ret;
+
+        // Credits
+        const creditsArr  = Object.values(userCredits);
+        const totalCr     = creditsArr.reduce((a, b) => a + b, 0);
+        const avgCr       = creditsArr.length ? (totalCr / creditsArr.length).toFixed(1) : '—';
+        const maxCr       = creditsArr.length ? Math.max(...creditsArr) : '—';
+        document.getElementById('totalCredits').textContent = totalCr.toLocaleString('fr-FR');
+        document.getElementById('avgCredits').textContent   = avgCr;
+        document.getElementById('maxCredits').textContent   = typeof maxCr === 'number' ? maxCr.toLocaleString('fr-FR') : maxCr;
+
+        // Top cities
+        buildTopList('topCities', cityCount, 'teal-bar');
+        // Top operators
+        buildTopList('topOperators', opCount, 'purple-bar');
+        // Regions chart data (stored for chart build)
+        window._regionData = regionCount;
     }
 
-    function buildChart() {
-        const ctx = document.getElementById('dailyChart').getContext('2d');
-        const labels = allDates.slice(-30);
-        const data   = allCounts.slice(-30);
-        dailyChart = new Chart(ctx, {
+    function buildTopList(elId, countMap, barClass) {
+        const el = document.getElementById(elId);
+        const sorted = Object.entries(countMap)
+            .map(([k, v]) => [k, v instanceof Set ? v.size : v])
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 6);
+
+        if (sorted.length === 0) { el.innerHTML = '<div style="color:var(--text-3);font-size:13px;padding:12px 0;">Aucune donnée</div>'; return; }
+        const max = sorted[0][1];
+
+        el.innerHTML = sorted.map(([name, count], i) => `
+            <div class="top-item">
+                <div class="top-rank">${i + 1}</div>
+                <div class="top-bar-wrap">
+                    <div class="top-bar ${barClass}" style="width:${Math.round((count/max)*100)}%"></div>
+                    <span class="top-bar-label">${name}</span>
+                    <span class="top-bar-count">${count}</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // ── Charts ───────────────────────────────────────────
+    function buildCharts() {
+        // Daily users chart
+        const ctx1 = document.getElementById('dailyChart').getContext('2d');
+        const labels1 = allDates.slice(-30);
+        const data1   = allCounts.slice(-30);
+        dailyChart = new Chart(ctx1, barChartConfig(labels1, data1, TEAL, TEAL_DIM,
+            c => `${c.parsed.y} utilisateur${c.parsed.y > 1 ? 's' : ''}`));
+
+        // Credits over time chart
+        const ctx2 = document.getElementById('creditsChart').getContext('2d');
+        const labels2 = allDates.slice(-30);
+        const data2   = allCredits.slice(-30);
+        creditsChart = new Chart(ctx2, barChartConfig(labels2, data2, PURPLE, PURPLE_DIM,
+            c => `${c.parsed.y.toLocaleString('fr-FR')} crédits`));
+
+        // Regions horizontal bar chart
+        buildRegionsChart();
+    }
+
+    function barChartConfig(labels, data, color, dimColor, labelFn) {
+        return {
             type: 'bar',
             data: {
                 labels,
                 datasets: [{
                     data,
-                    backgroundColor: data.map((_,i,a) => i===a.length-1 ? TEAL : TEAL_DIM),
+                    backgroundColor: data.map((_, i, a) => i === a.length - 1 ? color : dimColor),
                     borderRadius: 6,
                     borderSkipped: false
                 }]
@@ -674,15 +776,10 @@
                         backgroundColor: isDark ? '#2a2520' : '#1c1917',
                         titleColor: '#f5f0eb',
                         bodyColor: 'rgba(245,240,235,0.7)',
-                        padding: 12,
-                        cornerRadius: 12,
-                        displayColors: false,
+                        padding: 12, cornerRadius: 12, displayColors: false,
                         titleFont: { size: 12, weight: '600', family: 'Nunito Sans' },
                         bodyFont:  { size: 14, weight: '700', family: 'Nunito' },
-                        callbacks: {
-                            title: c => c[0].label,
-                            label: c => `${c.parsed.y} utilisateur${c.parsed.y>1?'s':''}`
-                        }
+                        callbacks: { title: c => c[0].label, label: labelFn }
                     }
                 },
                 scales: {
@@ -700,19 +797,93 @@
                 },
                 interaction: { intersect: false, mode: 'index' }
             }
+        };
+    }
+
+    function buildRegionsChart() {
+        const regionData = window._regionData || {};
+        const sorted = Object.entries(regionData)
+            .map(([k, v]) => [k, v instanceof Set ? v.size : v])
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 8);
+
+        const COLORS = [
+            'rgba(29,158,117,0.75)', 'rgba(127,119,221,0.75)', 'rgba(186,117,23,0.75)',
+            'rgba(216,90,48,0.75)',  'rgba(55,138,221,0.75)',   'rgba(99,153,34,0.75)',
+            'rgba(29,158,117,0.45)', 'rgba(127,119,221,0.45)'
+        ];
+
+        const ctx = document.getElementById('regionsChart').getContext('2d');
+        regionsChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: sorted.map(([k]) => k),
+                datasets: [{
+                    data: sorted.map(([, v]) => v),
+                    backgroundColor: sorted.map((_, i) => COLORS[i % COLORS.length]),
+                    borderRadius: 6,
+                    borderSkipped: false
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: isDark ? '#2a2520' : '#1c1917',
+                        titleColor: '#f5f0eb',
+                        bodyColor: 'rgba(245,240,235,0.7)',
+                        padding: 12, cornerRadius: 12, displayColors: false,
+                        callbacks: {
+                            title: c => c[0].label,
+                            label: c => `${c.parsed.x} utilisateur${c.parsed.x > 1 ? 's' : ''}`
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        border: { display: false },
+                        grid: { color: GRID, drawTicks: false },
+                        ticks: { padding: 8, precision: 0, font: { size: 11 }, color: TICK }
+                    },
+                    y: {
+                        border: { display: false },
+                        grid: { display: false },
+                        ticks: { padding: 8, font: { size: 12 }, color: TICK }
+                    }
+                }
+            }
         });
     }
 
+    // ── Filters ──────────────────────────────────────────
     function filterData(period, btn) {
-        document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('#content .period-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const n = period === 'all' ? 0 : Math.max(0, allDates.length - period);
+        const n      = period === 'all' ? 0 : Math.max(0, allDates.length - period);
         const labels = allDates.slice(n);
         const data   = allCounts.slice(n);
         dailyChart.data.labels = labels;
         dailyChart.data.datasets[0].data = data;
-        dailyChart.data.datasets[0].backgroundColor = data.map((_,i,a) => i===a.length-1 ? TEAL : TEAL_DIM);
+        dailyChart.data.datasets[0].backgroundColor = data.map((_, i, a) => i === a.length - 1 ? TEAL : TEAL_DIM);
         dailyChart.update('none');
+    }
+
+    function filterCredits(period, btn) {
+        // Find the button group for this button and only toggle within it
+        const row = btn.closest('.period-row');
+        row.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const n      = period === 'all' ? 0 : Math.max(0, allDates.length - period);
+        const labels = allDates.slice(n);
+        const data   = allCredits.slice(n);
+        creditsChart.data.labels = labels;
+        creditsChart.data.datasets[0].data = data;
+        creditsChart.data.datasets[0].backgroundColor = data.map((_, i, a) => i === a.length - 1 ? PURPLE : PURPLE_DIM);
+        creditsChart.update('none');
     }
 </script>
 </body>
