@@ -1,13 +1,13 @@
 {
   "name": "Pronext Stats",
   "short_name": "Pronext",
-  "start_url": "./",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#0D1117",
   "theme_color": "#E3FFFF",
   "icons": [
     {
-      "src": "icons/logo-pronext.png",
+      "src": "logo-pronext.png",
       "sizes": "192x192",
       "type": "image/png"
     }
