@@ -133,6 +133,15 @@
             border: 1px solid var(--border);
         }
 
+        /* ── Section title ── */
+        .section-title {
+            font-family: 'Nunito', sans-serif;
+            font-size: 13px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.07em;
+            color: var(--text-3);
+            margin: 32px 0 12px;
+        }
+
         /* ── Age banner ── */
         .age-card {
             background: var(--teal-fill);
@@ -298,6 +307,8 @@
         .teal-bar   { background: var(--teal-fill); }
         .purple-bar { background: var(--purple-fill); }
         .amber-bar  { background: var(--amber-fill); }
+        .blue-bar   { background: var(--blue-fill); }
+        .coral-bar  { background: var(--coral-fill); }
 
         .top-bar-label {
             position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
@@ -332,6 +343,19 @@
             color: var(--purple-dark); letter-spacing: -0.03em; line-height: 1;
         }
         .credit-metric-sub { font-size: 12px; color: var(--purple-dark); opacity: 0.65; margin-top: 2px; }
+
+        /* ── Android API pill ── */
+        .api-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+        .api-pill {
+            display: flex; align-items: center; gap: 8px;
+            background: var(--bg); border-radius: 40px;
+            padding: 6px 14px 6px 10px;
+            font-size: 12px; font-weight: 700; color: var(--text-1);
+        }
+        .api-pill-dot {
+            width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+        }
+        .api-pill-pct { color: var(--text-3); font-weight: 600; margin-left: 2px; }
 
         /* ── Footer ── */
         .footer {
@@ -412,7 +436,9 @@
             </div>
         </div>
 
-        <!-- Stat cards -->
+        <!-- ── Utilisation ── -->
+        <div class="section-title">Utilisation</div>
+
         <div class="cards-grid">
             <div class="stat-card teal">
                 <div class="card-icon"><span class="material-symbols-rounded">group</span></div>
@@ -470,7 +496,9 @@
             </div>
         </div>
 
-        <!-- AI Credits card -->
+        <!-- ── Crédits IA ── -->
+        <div class="section-title">Crédits IA</div>
+
         <div class="credits-card">
             <div>
                 <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
@@ -510,22 +538,6 @@
             </div>
         </div>
 
-        <!-- Top cities / regions -->
-        <div class="charts-row">
-            <div class="chart-card-sm">
-                <div class="chart-title">Top villes</div>
-                <div class="chart-sub">Par nombre d'utilisateurs uniques</div>
-                <div class="top-list" id="topCities"></div>
-            </div>
-            <div class="chart-card-sm">
-                <div class="chart-title">Régions</div>
-                <div class="chart-sub">Utilisateurs uniques par région</div>
-                <div class="chart-wrap-sm" style="margin-top:12px;">
-                    <canvas id="regionsChart"></canvas>
-                </div>
-            </div>
-        </div>
-
         <!-- Credits over time -->
         <div class="chart-card">
             <div class="chart-header">
@@ -544,6 +556,58 @@
             </div>
         </div>
 
+        <!-- ── Géographie ── -->
+        <div class="section-title">Géographie</div>
+
+        <div class="charts-row">
+            <div class="chart-card-sm">
+                <div class="chart-title">Top villes</div>
+                <div class="chart-sub">Par nombre d'utilisateurs uniques</div>
+                <div class="top-list" id="topCities"></div>
+            </div>
+            <div class="chart-card-sm">
+                <div class="chart-title">Régions</div>
+                <div class="chart-sub">Utilisateurs uniques par région</div>
+                <div class="chart-wrap-sm" style="margin-top:12px;">
+                    <canvas id="regionsChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Appareils ── -->
+        <div class="section-title">Appareils</div>
+
+        <div class="charts-row">
+            <!-- Top fabricants -->
+            <div class="chart-card-sm">
+                <div class="chart-title">Fabricants</div>
+                <div class="chart-sub">Marques les plus utilisées</div>
+                <div class="top-list" id="topManufacturers"></div>
+            </div>
+            <!-- Top modèles -->
+            <div class="chart-card-sm">
+                <div class="chart-title">Modèles</div>
+                <div class="chart-sub">Modèles les plus utilisés</div>
+                <div class="top-list" id="topModels"></div>
+            </div>
+        </div>
+
+        <!-- Android API versions -->
+        <div class="chart-card" style="margin-top:14px;">
+            <div class="chart-header">
+                <div>
+                    <div class="chart-title">Versions Android</div>
+                    <div class="chart-sub">Distribution des niveaux d'API parmi les utilisateurs</div>
+                </div>
+            </div>
+            <!-- Pills résumé -->
+            <div class="api-pills" id="apiPills"></div>
+            <!-- Bar chart -->
+            <div style="height:220px;position:relative;margin-top:20px;">
+                <canvas id="androidChart"></canvas>
+            </div>
+        </div>
+
         <footer class="footer">
             <div class="footer-dot"></div>
             <div>
@@ -557,46 +621,50 @@
 
 <script>
     let statsData = null;
-    let dailyChart = null, creditsChart = null, regionsChart = null;
+    let dailyChart = null, creditsChart = null, regionsChart = null, androidChart = null;
     let allDates = [], allCounts = [], allCredits = [];
 
     const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const TEAL      = '#1D9E75';
-    const TEAL_DIM  = isDark ? 'rgba(29,158,117,0.2)' : 'rgba(29,158,117,0.15)';
-    const PURPLE    = '#7F77DD';
-    const PURPLE_DIM = isDark ? 'rgba(127,119,221,0.2)' : 'rgba(127,119,221,0.15)';
+    const TEAL       = '#1D9E75';
+    const TEAL_DIM   = isDark ? 'rgba(29,158,117,0.2)'   : 'rgba(29,158,117,0.15)';
+    const PURPLE     = '#7F77DD';
+    const PURPLE_DIM = isDark ? 'rgba(127,119,221,0.2)'  : 'rgba(127,119,221,0.15)';
+    const BLUE       = '#378ADD';
     const GRID = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
     const TICK = isDark ? '#57534e' : '#a8a29e';
+
+    // Android API → version marketing
+    const API_NAMES = {
+        34: 'Android 14', 33: 'Android 13', 32: 'Android 12L',
+        31: 'Android 12', 30: 'Android 11', 29: 'Android 10',
+        28: 'Android 9',  27: 'Android 8.1', 26: 'Android 8.0',
+        25: 'Android 7.1', 24: 'Android 7.0'
+    };
+
+    const API_COLORS = [
+        'rgba(29,158,117,0.8)', 'rgba(127,119,221,0.8)', 'rgba(55,138,221,0.8)',
+        'rgba(99,153,34,0.8)',  'rgba(186,117,23,0.8)',   'rgba(216,90,48,0.8)',
+        'rgba(29,158,117,0.5)', 'rgba(127,119,221,0.5)'
+    ];
 
     Chart.defaults.font.family = "'Nunito Sans', system-ui, sans-serif";
 
     // ── Helpers ──────────────────────────────────────────
     function fmt(s) { const [y,m,d] = s.split('-'); return `${d}/${m}/${y}`; }
 
-    function getUserValue(userObj, field) {
-        // Support both old format {user: 1} and new format {user: {city,region,operator,total_ai_credits}}
-        if (typeof userObj === 'object' && userObj !== null) return userObj[field] ?? null;
-        return null;
-    }
-
-    function isNewFormat(dayData) {
-        const firstVal = Object.values(dayData)[0];
-        return typeof firstVal === 'object' && firstVal !== null && typeof firstVal !== 'number';
-    }
-
     // ── Fetch ────────────────────────────────────────────
     fetch('https://raw.githubusercontent.com/Swaero5/pronext-stats/main/stats.json?v=' + Date.now())
         .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
         .then(data => {
             statsData = data;
-            allDates = Object.keys(data).sort();
+            allDates  = Object.keys(data).sort();
             allCounts = allDates.map(d => Object.keys(data[d]).length);
-            allCredits = allDates.map(d => {
-                return Object.values(data[d]).reduce((sum, v) => {
+            allCredits = allDates.map(d =>
+                Object.values(data[d]).reduce((sum, v) => {
                     const c = typeof v === 'object' && v !== null ? (v.total_ai_credits ?? 0) : 0;
                     return sum + c;
-                }, 0);
-            });
+                }, 0)
+            );
             buildStats();
             buildCharts();
             document.getElementById('loading').style.display = 'none';
@@ -614,7 +682,7 @@
     function buildStats() {
         const today = new Date(); today.setHours(0,0,0,0);
         const first = new Date(allDates[0]);
-        const last  = new Date(allDates[allDates.length-1]);
+        const last  = new Date(allDates[allDates.length - 1]);
 
         const ageDays = Math.floor((today - first) / 86400000);
         const ageWks  = Math.floor(ageDays / 7);
@@ -633,12 +701,16 @@
         document.getElementById('headerDate').textContent =
             'Mis à jour le ' + today.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
 
-        // Aggregate users
-        const userDays    = {};
-        const allUsers    = new Set();
-        const cityCount   = {};
-        const regionCount = {};
-        // Track latest credits per user (overwrite on each day → most recent value)
+        // ── Aggregate ────────────────────────────────────
+        const userDays       = {};
+        const allUsers       = new Set();
+        const cityCount      = {};
+        const regionCount    = {};
+        const manuCount      = {};   // fabricants
+        const modelCount     = {};   // modèles
+        const apiCount       = {};   // android_api → Set(uid)
+
+        // Credits: latest known value per user (overwritten each day)
         const userTotalCredits   = {};
         const userWeeklyCredits  = {};
         const userMonthlyCredits = {};
@@ -649,12 +721,25 @@
                 userDays[uid] = (userDays[uid] || 0) + 1;
 
                 if (typeof val === 'object' && val !== null) {
+                    // Geo
                     const city   = val.city   || 'Inconnue';
                     const region = val.region || 'Inconnue';
+                    cityCount[city]     = cityCount[city]   || new Set(); cityCount[city].add(uid);
+                    regionCount[region] = regionCount[region] || new Set(); regionCount[region].add(uid);
 
-                    cityCount[city]     = (cityCount[city]   || new Set()); cityCount[city].add(uid);
-                    regionCount[region] = (regionCount[region] || new Set()); regionCount[region].add(uid);
+                    // Appareils
+                    const manu  = val.device_manufacturer || 'Inconnu';
+                    const model = val.device_model        || 'Inconnu';
+                    manuCount[manu]   = manuCount[manu]  || new Set(); manuCount[manu].add(uid);
+                    modelCount[model] = modelCount[model] || new Set(); modelCount[model].add(uid);
 
+                    // Android API
+                    if (val.android_api != null && val.android_api !== 0) {
+                        const api = String(val.android_api);
+                        apiCount[api] = apiCount[api] || new Set(); apiCount[api].add(uid);
+                    }
+
+                    // Credits
                     userTotalCredits[uid]   = val.total_ai_credits   ?? 0;
                     userWeeklyCredits[uid]  = val.weekly_ai_credits  ?? 0;
                     userMonthlyCredits[uid] = val.monthly_ai_credits ?? 0;
@@ -662,10 +747,11 @@
             });
         });
 
+        // ── KPI cards ────────────────────────────────────
         document.getElementById('totalUsers').textContent = allUsers.size;
 
         const active = allDates.length;
-        document.getElementById('totalDays').textContent    = active;
+        document.getElementById('totalDays').textContent     = active;
         document.getElementById('activeDaysSub').textContent = `sur ${ageDays} jours calendaires`;
 
         const peak    = Math.max(...allCounts);
@@ -696,7 +782,7 @@
         const ret = Object.values(userDays).filter(c => c > 1).length;
         document.getElementById('returningUsers').textContent = ret;
 
-        // Credits — total (latest known per user, overwritten each day)
+        // ── Credits ──────────────────────────────────────
         const totalArr   = Object.values(userTotalCredits);
         const weeklyArr  = Object.values(userWeeklyCredits);
         const monthlyArr = Object.values(userMonthlyCredits);
@@ -713,10 +799,17 @@
         document.getElementById('avgCredits').textContent     = avgTotal;
         document.getElementById('maxCredits').textContent     = typeof maxTotal === 'number' ? maxTotal.toLocaleString('fr-FR') : maxTotal;
 
-        // Top cities
+        // ── Geo lists ─────────────────────────────────────
         buildTopList('topCities', cityCount, 'teal-bar');
-        // Regions chart data (stored for chart build)
         window._regionData = regionCount;
+
+        // ── Device lists ──────────────────────────────────
+        buildTopList('topManufacturers', manuCount, 'blue-bar');
+        buildTopList('topModels',        modelCount, 'amber-bar');
+
+        // ── Android API ───────────────────────────────────
+        window._apiData = apiCount;
+        buildApiPills(apiCount, allUsers.size);
     }
 
     function buildTopList(elId, countMap, barClass) {
@@ -726,14 +819,14 @@
             .sort((a, b) => b[1] - a[1])
             .slice(0, 6);
 
-        if (sorted.length === 0) { el.innerHTML = '<div style="color:var(--text-3);font-size:13px;padding:12px 0;">Aucune donnée</div>'; return; }
+        if (!sorted.length) { el.innerHTML = '<div style="color:var(--text-3);font-size:13px;padding:12px 0;">Aucune donnée</div>'; return; }
         const max = sorted[0][1];
 
         el.innerHTML = sorted.map(([name, count], i) => `
             <div class="top-item">
                 <div class="top-rank">${i + 1}</div>
                 <div class="top-bar-wrap">
-                    <div class="top-bar ${barClass}" style="width:${Math.round((count/max)*100)}%"></div>
+                    <div class="top-bar ${barClass}" style="width:${Math.round((count / max) * 100)}%"></div>
                     <span class="top-bar-label">${name}</span>
                     <span class="top-bar-count">${count}</span>
                 </div>
@@ -741,24 +834,47 @@
         `).join('');
     }
 
+    function buildApiPills(apiCount, totalUsers) {
+        const container = document.getElementById('apiPills');
+        const sorted = Object.entries(apiCount)
+            .map(([api, s]) => [api, s instanceof Set ? s.size : s])
+            .sort((a, b) => b[0] - a[0]); // tri décroissant par API level
+
+        if (!sorted.length) { container.innerHTML = '<span style="color:var(--text-3);font-size:13px;">Aucune donnée</span>'; return; }
+
+        container.innerHTML = sorted.map(([api, count], i) => {
+            const label = API_NAMES[+api] ? `${API_NAMES[+api]} (API ${api})` : `API ${api}`;
+            const pct   = totalUsers > 0 ? Math.round((count / totalUsers) * 100) : 0;
+            const color = API_COLORS[i % API_COLORS.length];
+            return `<div class="api-pill">
+                <div class="api-pill-dot" style="background:${color}"></div>
+                ${label}
+                <span class="api-pill-pct">${pct}%</span>
+            </div>`;
+        }).join('');
+    }
+
     // ── Charts ───────────────────────────────────────────
     function buildCharts() {
-        // Daily users chart
-        const ctx1 = document.getElementById('dailyChart').getContext('2d');
-        const labels1 = allDates.slice(-30);
-        const data1   = allCounts.slice(-30);
-        dailyChart = new Chart(ctx1, barChartConfig(labels1, data1, TEAL, TEAL_DIM,
-            c => `${c.parsed.y} utilisateur${c.parsed.y > 1 ? 's' : ''}`));
+        // Daily users
+        dailyChart = new Chart(
+            document.getElementById('dailyChart').getContext('2d'),
+            barChartConfig(allDates.slice(-30), allCounts.slice(-30), TEAL, TEAL_DIM,
+                c => `${c.parsed.y} utilisateur${c.parsed.y > 1 ? 's' : ''}`)
+        );
 
-        // Credits over time chart
-        const ctx2 = document.getElementById('creditsChart').getContext('2d');
-        const labels2 = allDates.slice(-30);
-        const data2   = allCredits.slice(-30);
-        creditsChart = new Chart(ctx2, barChartConfig(labels2, data2, PURPLE, PURPLE_DIM,
-            c => `${c.parsed.y.toLocaleString('fr-FR')} crédits`));
+        // Credits over time
+        creditsChart = new Chart(
+            document.getElementById('creditsChart').getContext('2d'),
+            barChartConfig(allDates.slice(-30), allCredits.slice(-30), PURPLE, PURPLE_DIM,
+                c => `${c.parsed.y.toLocaleString('fr-FR')} crédits`)
+        );
 
-        // Regions horizontal bar chart
+        // Regions
         buildRegionsChart();
+
+        // Android API
+        buildAndroidChart();
     }
 
     function barChartConfig(labels, data, color, dimColor, labelFn) {
@@ -819,8 +935,7 @@
             'rgba(29,158,117,0.45)', 'rgba(127,119,221,0.45)'
         ];
 
-        const ctx = document.getElementById('regionsChart').getContext('2d');
-        regionsChart = new Chart(ctx, {
+        regionsChart = new Chart(document.getElementById('regionsChart').getContext('2d'), {
             type: 'bar',
             data: {
                 labels: sorted.map(([k]) => k),
@@ -849,44 +964,81 @@
                     }
                 },
                 scales: {
-                    x: {
-                        beginAtZero: true,
-                        border: { display: false },
-                        grid: { color: GRID, drawTicks: false },
-                        ticks: { padding: 8, precision: 0, font: { size: 11 }, color: TICK }
-                    },
-                    y: {
-                        border: { display: false },
-                        grid: { display: false },
-                        ticks: { padding: 8, font: { size: 12 }, color: TICK }
-                    }
+                    x: { beginAtZero: true, border: { display: false }, grid: { color: GRID, drawTicks: false }, ticks: { padding: 8, precision: 0, font: { size: 11 }, color: TICK } },
+                    y: { border: { display: false }, grid: { display: false }, ticks: { padding: 8, font: { size: 12 }, color: TICK } }
                 }
+            }
+        });
+    }
+
+    function buildAndroidChart() {
+        const apiData = window._apiData || {};
+        const sorted = Object.entries(apiData)
+            .map(([api, s]) => [api, s instanceof Set ? s.size : s])
+            .sort((a, b) => b[0] - a[0]); // décroissant par niveau API
+
+        const labels = sorted.map(([api]) => API_NAMES[+api] ? `${API_NAMES[+api]}\n(API ${api})` : `API ${api}`);
+        const data   = sorted.map(([, c]) => c);
+        const colors = sorted.map((_, i) => API_COLORS[i % API_COLORS.length]);
+
+        androidChart = new Chart(document.getElementById('androidChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels,
+                datasets: [{
+                    data,
+                    backgroundColor: colors,
+                    borderRadius: 6,
+                    borderSkipped: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: isDark ? '#2a2520' : '#1c1917',
+                        titleColor: '#f5f0eb',
+                        bodyColor: 'rgba(245,240,235,0.7)',
+                        padding: 12, cornerRadius: 12, displayColors: false,
+                        callbacks: {
+                            title: c => sorted[c[0].dataIndex]
+                                ? (API_NAMES[+sorted[c[0].dataIndex][0]] || `API ${sorted[c[0].dataIndex][0]}`)
+                                : c[0].label,
+                            label: c => `${c.parsed.y} utilisateur${c.parsed.y > 1 ? 's' : ''}`
+                        }
+                    }
+                },
+                scales: {
+                    y: { beginAtZero: true, border: { display: false }, grid: { color: GRID, drawTicks: false }, ticks: { padding: 10, precision: 0, font: { size: 12 }, color: TICK } },
+                    x: { border: { display: false }, grid: { display: false }, ticks: { padding: 8, font: { size: 11 }, color: TICK } }
+                },
+                interaction: { intersect: false, mode: 'index' }
             }
         });
     }
 
     // ── Filters ──────────────────────────────────────────
     function filterData(period, btn) {
-        document.querySelectorAll('#content .period-btn').forEach(b => b.classList.remove('active'));
+        btn.closest('.period-row').querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const n      = period === 'all' ? 0 : Math.max(0, allDates.length - period);
-        const labels = allDates.slice(n);
-        const data   = allCounts.slice(n);
-        dailyChart.data.labels = labels;
+        const n    = period === 'all' ? 0 : Math.max(0, allDates.length - period);
+        const labs = allDates.slice(n);
+        const data = allCounts.slice(n);
+        dailyChart.data.labels = labs;
         dailyChart.data.datasets[0].data = data;
         dailyChart.data.datasets[0].backgroundColor = data.map((_, i, a) => i === a.length - 1 ? TEAL : TEAL_DIM);
         dailyChart.update('none');
     }
 
     function filterCredits(period, btn) {
-        // Find the button group for this button and only toggle within it
-        const row = btn.closest('.period-row');
-        row.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+        btn.closest('.period-row').querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const n      = period === 'all' ? 0 : Math.max(0, allDates.length - period);
-        const labels = allDates.slice(n);
-        const data   = allCredits.slice(n);
-        creditsChart.data.labels = labels;
+        const n    = period === 'all' ? 0 : Math.max(0, allDates.length - period);
+        const labs = allDates.slice(n);
+        const data = allCredits.slice(n);
+        creditsChart.data.labels = labs;
         creditsChart.data.datasets[0].data = data;
         creditsChart.data.datasets[0].backgroundColor = data.map((_, i, a) => i === a.length - 1 ? PURPLE : PURPLE_DIM);
         creditsChart.update('none');
