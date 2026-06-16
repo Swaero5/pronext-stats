@@ -15,6 +15,9 @@ jobs:
           USER_ID="${{ github.event.client_payload.user_id }}"
           CITY="${{ github.event.client_payload.city }}"
           REGION="${{ github.event.client_payload.region }}"
+          DEVICE_MODEL="${{ github.event.client_payload.device_model }}"
+          DEVICE_MANUFACTURER="${{ github.event.client_payload.device_manufacturer }}"
+          ANDROID_API="${{ github.event.client_payload.android_api }}"
           TOTAL_AI_CREDITS="${{ github.event.client_payload.total_ai_credits }}"
           WEEKLY_AI_CREDITS="${{ github.event.client_payload.weekly_ai_credits }}"
           MONTHLY_AI_CREDITS="${{ github.event.client_payload.monthly_ai_credits }}"
@@ -22,35 +25,61 @@ jobs:
 
           echo "Date: $DATE | User: $USER_ID"
           echo "City: $CITY | Region: $REGION"
+          echo "Device: $DEVICE_MANUFACTURER $DEVICE_MODEL (API $ANDROID_API)"
           echo "Credits — total: $TOTAL_AI_CREDITS | weekly: $WEEKLY_AI_CREDITS | monthly: $MONTHLY_AI_CREDITS"
 
+          # Validate numeric fields — fallback to 0 if empty or non-numeric
+          [[ "$ANDROID_API" =~ ^[0-9]+$ ]]      || ANDROID_API=0
+          [[ "$TOTAL_AI_CREDITS" =~ ^[0-9]+$ ]] || TOTAL_AI_CREDITS=0
+          [[ "$WEEKLY_AI_CREDITS" =~ ^[0-9]+$ ]]  || WEEKLY_AI_CREDITS=0
+          [[ "$MONTHLY_AI_CREDITS" =~ ^[0-9]+$ ]] || MONTHLY_AI_CREDITS=0
+
           USER_OBJ=$(jq -n \
-            --arg city "$CITY" \
-            --arg region "$REGION" \
-            --argjson total "$TOTAL_AI_CREDITS" \
-            --argjson weekly "$WEEKLY_AI_CREDITS" \
-            --argjson monthly "$MONTHLY_AI_CREDITS" \
-            '{city: $city, region: $region, total_ai_credits: $total, weekly_ai_credits: $weekly, monthly_ai_credits: $monthly}')
+            --arg city              "$CITY" \
+            --arg region            "$REGION" \
+            --arg device_model      "$DEVICE_MODEL" \
+            --arg device_manufacturer "$DEVICE_MANUFACTURER" \
+            --argjson android_api   "$ANDROID_API" \
+            --argjson total         "$TOTAL_AI_CREDITS" \
+            --argjson weekly        "$WEEKLY_AI_CREDITS" \
+            --argjson monthly       "$MONTHLY_AI_CREDITS" \
+            '{
+              city: $city,
+              region: $region,
+              device_model: $device_model,
+              device_manufacturer: $device_manufacturer,
+              android_api: $android_api,
+              total_ai_credits: $total,
+              weekly_ai_credits: $weekly,
+              monthly_ai_credits: $monthly
+            }')
 
           if [ ! -f "$FILE" ]; then
             echo "Fichier $FILE non trouvé, création..."
-            jq -n --arg date "$DATE" --arg uid "$USER_ID" --argjson obj "$USER_OBJ" \
-              '{($date): {($uid): $obj}}' > $FILE
+            jq -n \
+              --arg date "$DATE" \
+              --arg uid  "$USER_ID" \
+              --argjson obj "$USER_OBJ" \
+              '{($date): {($uid): $obj}}' > "$FILE"
           else
             echo "Fichier $FILE trouvé, mise à jour..."
-            jq --arg date "$DATE" --arg uid "$USER_ID" --argjson obj "$USER_OBJ" \
+            jq \
+              --arg date "$DATE" \
+              --arg uid  "$USER_ID" \
+              --argjson obj "$USER_OBJ" \
               '.[$date] //= {} | .[$date][$uid] = $obj' \
-              $FILE > temp.json && mv temp.json $FILE
+              "$FILE" > temp.json && mv temp.json "$FILE"
           fi
 
           echo "Contenu mis à jour du fichier $FILE:"
-          cat $FILE
+          cat "$FILE"
+
       - name: Commit and push changes
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add stats.json
-          git commit -m "Mise à jour des statistiques pour ${{ github.event.client_payload.date }}"
+          git commit -m "Stats · ${{ github.event.client_payload.date }} · ${{ github.event.client_payload.user_id }}" || echo "Rien à committer"
           git push origin main
         env:
           TOKEN: ${{ secrets.TOKEN }}
