@@ -1,9 +1,7 @@
 name: Update Stats
-
 on:
   repository_dispatch:
     types: [app_usage]
-
 jobs:
   update-stats:
     runs-on: ubuntu-latest
@@ -11,40 +9,64 @@ jobs:
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.TOKEN }}
-
       - name: Update stats
         run: |
-          DATE=${{ github.event.client_payload.date }}
-          USER_ID=${{ github.event.client_payload.user_id }}
+          DATE="${{ github.event.client_payload.date }}"
+          USER_ID="${{ github.event.client_payload.user_id }}"
+          CITY="${{ github.event.client_payload.city }}"
+          REGION="${{ github.event.client_payload.region }}"
+          OPERATOR="${{ github.event.client_payload.operator }}"
+          TOTAL_AI_CREDITS="${{ github.event.client_payload.total_ai_credits }}"
           FILE="stats.json"
 
           echo "Date: $DATE"
           echo "User ID: $USER_ID"
+          echo "City: $CITY | Region: $REGION | Operator: $OPERATOR | AI Credits: $TOTAL_AI_CREDITS"
 
           if [ ! -f "$FILE" ]; then
             echo "Fichier $FILE non trouvé, création..."
-            echo "{\"$DATE\": {\"$USER_ID\": 1}}" > $FILE
+            echo "{\"$DATE\": {\"$USER_ID\": {\"city\": \"$CITY\", \"region\": \"$REGION\", \"operator\": \"$OPERATOR\", \"total_ai_credits\": $TOTAL_AI_CREDITS}}}" > $FILE
           else
             echo "Fichier $FILE trouvé, mise à jour..."
             cat $FILE
-
             if jq -e --arg date "$DATE" 'has($date)' $FILE > /dev/null; then
               echo "La date $DATE existe déjà dans le fichier."
               if jq -e --arg date "$DATE" --arg user_id "$USER_ID" '.[$date] | has($user_id)' $FILE > /dev/null; then
-                echo "L'utilisateur $USER_ID existe déjà pour la date $DATE."
+                echo "L'utilisateur $USER_ID existe déjà pour la date $DATE — mise à jour des crédits IA."
+                jq --arg date "$DATE" \
+                   --arg user_id "$USER_ID" \
+                   --arg city "$CITY" \
+                   --arg region "$REGION" \
+                   --arg operator "$OPERATOR" \
+                   --argjson credits "$TOTAL_AI_CREDITS" \
+                   '.[$date][$user_id] = {city: $city, region: $region, operator: $operator, total_ai_credits: $credits}' \
+                   $FILE > temp.json && mv temp.json $FILE
               else
                 echo "Ajout de l'utilisateur $USER_ID pour la date $DATE."
-                jq --arg date "$DATE" --arg user_id "$USER_ID" '.[$date] += {($user_id): 1}' $FILE > temp.json && mv temp.json $FILE
+                jq --arg date "$DATE" \
+                   --arg user_id "$USER_ID" \
+                   --arg city "$CITY" \
+                   --arg region "$REGION" \
+                   --arg operator "$OPERATOR" \
+                   --argjson credits "$TOTAL_AI_CREDITS" \
+                   '.[$date] += {($user_id): {city: $city, region: $region, operator: $operator, total_ai_credits: $credits}}' \
+                   $FILE > temp.json && mv temp.json $FILE
               fi
             else
               echo "Ajout de la date $DATE et de l'utilisateur $USER_ID."
-              jq --arg date "$DATE" --arg user_id "$USER_ID" '. + {($date): {($user_id): 1}}' $FILE > temp.json && mv temp.json $FILE
+              jq --arg date "$DATE" \
+                 --arg user_id "$USER_ID" \
+                 --arg city "$CITY" \
+                 --arg region "$REGION" \
+                 --arg operator "$OPERATOR" \
+                 --argjson credits "$TOTAL_AI_CREDITS" \
+                 '. + {($date): {($user_id): {city: $city, region: $region, operator: $operator, total_ai_credits: $credits}}}' \
+                 $FILE > temp.json && mv temp.json $FILE
             fi
           fi
 
           echo "Contenu mis à jour du fichier $FILE:"
           cat $FILE
-
       - name: Commit and push changes
         run: |
           git config --global user.name "GitHub Actions"
