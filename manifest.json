@@ -1,7 +1,8 @@
 {
   "name": "Pronext Stats",
   "short_name": "Pronext",
-  "start_url": "./",
+  "start_url": "/pronext-stats/",
+  "scope": "/pronext-stats/",
   "display": "standalone",
   "background_color": "#0D1117",
   "theme_color": "#E3FFFF",
