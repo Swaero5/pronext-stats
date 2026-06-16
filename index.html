@@ -633,21 +633,39 @@
     const GRID = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
     const TICK = isDark ? '#57534e' : '#a8a29e';
 
-    /*
     // Android API → version marketing
     const API_NAMES = {
-        34: 'Android 14', 33: 'Android 13', 32: 'Android 12L',
-        31: 'Android 12', 30: 'Android 11', 29: 'Android 10',
-        28: 'Android 9',  27: 'Android 8.1', 26: 'Android 8.0',
-        25: 'Android 7.1', 24: 'Android 7.0'
+        37: 'Android 17',
+        36: 'Android 16',
+        35: 'Android 15',
+        34: 'Android 14',
+        33: 'Android 13',
+        32: 'Android 12.1',
+        31: 'Android 12',
+        30: 'Android 11',
+        29: 'Android 10',
+        28: 'Android 9',
+        27: 'Android 8.1',
+        26: 'Android 8.0',
+        25: 'Android 7.1',
+        24: 'Android 7.0'
     };
-    */
-    const API_NAMES = {};
 
     const API_COLORS = [
-        'rgba(29,158,117,0.8)', 'rgba(127,119,221,0.8)', 'rgba(55,138,221,0.8)',
-        'rgba(99,153,34,0.8)',  'rgba(186,117,23,0.8)',   'rgba(216,90,48,0.8)',
-        'rgba(29,158,117,0.5)', 'rgba(127,119,221,0.5)'
+        'rgba(29,158,117,0.8)',  // Vert
+        'rgba(127,119,221,0.8)', // Violet
+        'rgba(55,138,221,0.8)',  // Bleu
+        'rgba(99,153,34,0.8)',   // Vert olive
+        'rgba(186,117,23,0.8)',  // Orange
+        'rgba(216,90,48,0.8)',   // Rouge-orange
+        'rgba(29,158,117,0.5)',  // Vert clair
+        'rgba(127,119,221,0.5)', // Violet clair
+        'rgba(55,138,221,0.5)',  // Bleu clair
+        'rgba(99,153,34,0.5)',   // Olive clair
+        'rgba(186,117,23,0.5)',  // Orange clair
+        'rgba(216,90,48,0.5)',   // Rouge clair
+        'rgba(0,188,212,0.8)',   // Cyan
+        'rgba(156,39,176,0.8)'   // Pourpre
     ];
 
     Chart.defaults.font.family = "'Nunito Sans', system-ui, sans-serif";
