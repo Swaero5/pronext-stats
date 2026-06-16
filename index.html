@@ -1066,6 +1066,10 @@
         creditsChart.data.datasets[0].backgroundColor = data.map((_, i, a) => i === a.length - 1 ? PURPLE : PURPLE_DIM);
         creditsChart.update('none');
     }
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js');
+    }
 </script>
 </body>
 </html>
