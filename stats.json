@@ -78,14 +78,14 @@
   },
   "2026-06-17": {
     "6eeec6f2-b286-4339-93b0-1f35a9d31508": {
-      "city": "Rennes",
-      "region": "Île-de-France",
-      "device_model": "Galaxy A54",
-      "device_manufacturer": "Samsung",
-      "android_api": 35,
-      "total_ai_credits": 4,
+      "city": "Saint-Herblain",
+      "region": "Pays de la Loire",
+      "device_model": "SM-S918B",
+      "device_manufacturer": "samsung",
+      "android_api": 36,
+      "total_ai_credits": 3,
       "weekly_ai_credits": 3,
-      "monthly_ai_credits": 5
+      "monthly_ai_credits": 3
     },
     "5377fa8c-2651-431d-be73-6b23bbddfd5b": {
       "city": "Tours",
