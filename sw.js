@@ -5,7 +5,9 @@ self.addEventListener('install', event => {
     caches.open(CACHE).then(cache =>
       cache.addAll([
         './',
-        './index.html'
+        './index.html',
+        '/pronext-stats/',
+        '/pronext-stats/index.html'
       ])
     )
   );
