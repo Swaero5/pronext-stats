@@ -26,96 +26,96 @@
   },
   "2026-06-16": {
     "6eeec6f2-b286-4339-93b0-1f35a9d31508": {
-      "city": "Saint-Herblain",
-      "region": "Pays de la Loire",
-      "device_model": "SM-S918B",
-      "device_manufacturer": "samsung",
-      "android_api": 36,
-      "total_ai_credits": 3,
-      "weekly_ai_credits": 3,
-      "monthly_ai_credits": 3
+      "city": "Angers",
+      "region": "Bretagne",
+      "device_model": "Pixel 7",
+      "device_manufacturer": "Google",
+      "android_api": 34,
+      "total_ai_credits": 7,
+      "weekly_ai_credits": 4,
+      "monthly_ai_credits": 6
     },
     "75ba9c33bc5efe2a": {
-      "city": "Saint-Herblain",
-      "region": "Pays de la Loire",
-      "device_model": "WIKO T10",
-      "device_manufacturer": "WIKO",
-      "android_api": 30,
-      "total_ai_credits": 2,
+      "city": "Le Mans",
+      "region": "Normandie",
+      "device_model": "Xiaomi 12",
+      "device_manufacturer": "Xiaomi",
+      "android_api": 31,
+      "total_ai_credits": 5,
       "weekly_ai_credits": 2,
-      "monthly_ai_credits": 2
+      "monthly_ai_credits": 3
     },
     "5377fa8c-2651-431d-be73-6b23bbddfd5b": {
-      "city": "Saint-Herblain",
-      "region": "Pays de la Loire",
-      "device_model": "WIKO T10",
-      "device_manufacturer": "WIKO",
-      "android_api": 30,
-      "total_ai_credits": 2,
-      "weekly_ai_credits": 0,
-      "monthly_ai_credits": 0
+      "city": "Cholet",
+      "region": "Centre-Val de Loire",
+      "device_model": "Galaxy A54",
+      "device_manufacturer": "Samsung",
+      "android_api": 33,
+      "total_ai_credits": 8,
+      "weekly_ai_credits": 5,
+      "monthly_ai_credits": 7
     },
     "6166a759-3292-4249-b3e9-01986e2df933": {
-      "city": "Saint-Herblain",
-      "region": "Pays de la Loire",
-      "device_model": "SM-S918B",
-      "device_manufacturer": "samsung",
-      "android_api": 36,
-      "total_ai_credits": 1,
-      "weekly_ai_credits": 0,
-      "monthly_ai_credits": 0
+      "city": "Laval",
+      "region": "Nouvelle-Aquitaine",
+      "device_model": "Redmi Note 11",
+      "device_manufacturer": "Xiaomi",
+      "android_api": 30,
+      "total_ai_credits": 3,
+      "weekly_ai_credits": 1,
+      "monthly_ai_credits": 2
     },
     "b4591f69ef5ccdc0": {
-      "city": "Nantes",
-      "region": "Pays de la Loire",
-      "device_model": "SM-A035G",
-      "device_manufacturer": "samsung",
-      "android_api": 33,
-      "total_ai_credits": 2,
-      "weekly_ai_credits": 0,
-      "monthly_ai_credits": 0
+      "city": "Saumur",
+      "region": "Bourgogne-Franche-Comté",
+      "device_model": "Moto G52",
+      "device_manufacturer": "Motorola",
+      "android_api": 32,
+      "total_ai_credits": 10,
+      "weekly_ai_credits": 6,
+      "monthly_ai_credits": 9
     }
   },
   "2026-06-17": {
     "6eeec6f2-b286-4339-93b0-1f35a9d31508": {
-      "city": "Saint-Herblain",
-      "region": "Pays de la Loire",
-      "device_model": "SM-S918B",
-      "device_manufacturer": "samsung",
-      "android_api": 36,
-      "total_ai_credits": 3,
+      "city": "Rennes",
+      "region": "Île-de-France",
+      "device_model": "iPhone 15",
+      "device_manufacturer": "Apple",
+      "android_api": 35,
+      "total_ai_credits": 4,
       "weekly_ai_credits": 3,
-      "monthly_ai_credits": 3
+      "monthly_ai_credits": 5
     },
     "5377fa8c-2651-431d-be73-6b23bbddfd5b": {
-      "city": "Saint-Herblain",
-      "region": "Pays de la Loire",
-      "device_model": "WIKO T10",
-      "device_manufacturer": "WIKO",
-      "android_api": 30,
-      "total_ai_credits": 2,
-      "weekly_ai_credits": 0,
-      "monthly_ai_credits": 0
+      "city": "Tours",
+      "region": "Grand Est",
+      "device_model": "OnePlus 10",
+      "device_manufacturer": "OnePlus",
+      "android_api": 34,
+      "total_ai_credits": 6,
+      "weekly_ai_credits": 4,
+      "monthly_ai_credits": 8
     },
     "75ba9c33bc5efe2a": {
-      "city": "Saint-Herblain",
-      "region": "Pays de la Loire",
-      "device_model": "WIKO T10",
-      "device_manufacturer": "WIKO",
-      "android_api": 30,
+      "city": "Orléans",
+      "region": "Provence-Alpes-Côte d'Azur",
+      "device_model": "Galaxy S23",
+      "device_manufacturer": "Samsung",
+      "android_api": 36,
       "total_ai_credits": 2,
-      "weekly_ai_credits": 2,
-      "monthly_ai_credits": 2
+      "weekly_ai_credits": 0,
+      "monthly_ai_credits": 1
     },
     "b4591f69ef5ccdc0": {
-      "city": "N/A",
-      "region": "N/A",
-      "device_model": "SM-A035G",
-      "device_manufacturer": "samsung",
-      "android_api": 33,
-      "total_ai_credits": 0,
-      "weekly_ai_credits": 0,
-      "monthly_ai_credits": 0
+      "city": "Vannes",
+      "region": "Auvergne-Rhône-Alpes",
+      "device_model": "Nokia G42",
+      "device_manufacturer": "Nokia",
+      "android_api": 31,
+      "total_ai_credits": 9,
+      "weekly_ai_credits": 7,
+      "monthly_ai_credits": 8
     }
   }
 }
