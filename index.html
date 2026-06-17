@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pronext — Analytics</title>
-    <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#2E7D5A">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1065,10 +1064,6 @@
         creditsChart.data.datasets[0].data = data;
         creditsChart.data.datasets[0].backgroundColor = data.map((_, i, a) => i === a.length - 1 ? PURPLE : PURPLE_DIM);
         creditsChart.update('none');
-    }
-
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js');
     }
 </script>
 </body>
