@@ -106,6 +106,16 @@
       "total_ai_credits": 2,
       "weekly_ai_credits": 2,
       "monthly_ai_credits": 2
+    },
+    "b4591f69ef5ccdc0": {
+      "city": "N/A",
+      "region": "N/A",
+      "device_model": "SM-A035G",
+      "device_manufacturer": "samsung",
+      "android_api": 33,
+      "total_ai_credits": 0,
+      "weekly_ai_credits": 0,
+      "monthly_ai_credits": 0
     }
   }
 }
