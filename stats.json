@@ -98,14 +98,14 @@
       "monthly_ai_credits": 8
     },
     "75ba9c33bc5efe2a": {
-      "city": "Orléans",
-      "region": "Provence-Alpes-Côte d'Azur",
-      "device_model": "Galaxy S21",
-      "device_manufacturer": "Samsung",
-      "android_api": 36,
+      "city": "Saint-Herblain",
+      "region": "Pays de la Loire",
+      "device_model": "WIKO T10",
+      "device_manufacturer": "WIKO",
+      "android_api": 30,
       "total_ai_credits": 2,
-      "weekly_ai_credits": 0,
-      "monthly_ai_credits": 1
+      "weekly_ai_credits": 2,
+      "monthly_ai_credits": 2
     },
     "b4591f69ef5ccdc0": {
       "city": "N/A",
