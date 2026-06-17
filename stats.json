@@ -108,14 +108,14 @@
       "monthly_ai_credits": 1
     },
     "b4591f69ef5ccdc0": {
-      "city": "Vannes",
-      "region": "Auvergne-Rhône-Alpes",
-      "device_model": "Galaxy S22",
-      "device_manufacturer": "Samsung",
-      "android_api": 31,
-      "total_ai_credits": 9,
-      "weekly_ai_credits": 7,
-      "monthly_ai_credits": 8
+      "city": "N/A",
+      "region": "N/A",
+      "device_model": "SM-A035G",
+      "device_manufacturer": "samsung",
+      "android_api": 33,
+      "total_ai_credits": 0,
+      "weekly_ai_credits": 0,
+      "monthly_ai_credits": 0
     }
   },
   "2026-06-18": {
