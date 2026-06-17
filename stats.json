@@ -86,6 +86,16 @@
       "total_ai_credits": 3,
       "weekly_ai_credits": 3,
       "monthly_ai_credits": 3
+    },
+    "5377fa8c-2651-431d-be73-6b23bbddfd5b": {
+      "city": "Saint-Herblain",
+      "region": "Pays de la Loire",
+      "device_model": "WIKO T10",
+      "device_manufacturer": "WIKO",
+      "android_api": 30,
+      "total_ai_credits": 2,
+      "weekly_ai_credits": 0,
+      "monthly_ai_credits": 0
     }
   }
 }
