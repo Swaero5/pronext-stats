@@ -184,6 +184,16 @@
       "total_ai_credits": 0,
       "weekly_ai_credits": 0,
       "monthly_ai_credits": 0
+    },
+    "6166a759-3292-4249-b3e9-01986e2df933": {
+      "city": "Saint-Herblain",
+      "region": "Pays de la Loire",
+      "device_model": "SM-S918B",
+      "device_manufacturer": "samsung",
+      "android_api": 36,
+      "total_ai_credits": 2,
+      "weekly_ai_credits": 1,
+      "monthly_ai_credits": 1
     }
   }
 }
