@@ -112,5 +112,16 @@
     "response": "Erreur Serveur Gemini : Unexpected Response:\n{\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\n    \"status\": \"UNAVAILABLE\"\n  }\n}\n kotlinx.serialization.MissingFieldException: Field 'details' is required for type with serial name 'com.google.ai.client.generativeai.common.server.GRpcError', but it was missing at path: $.error",
     "render_info": "Subject: Mathématiques ( Scientific: true )",
     "comment": ""
+  },
+  {
+    "id": "6eeec6f2-b286-4339-93b0-1f35a9d31508",
+    "date": "2026-06-16 17:52:11",
+    "subject": "Briefing: Julie",
+    "homework": "2026-06-16",
+    "strategy": "BRIEFING",
+    "prompt": "                    Tu es un assistant personnel pour un étudiant nommé Julie.\n                    Aujourd'hui nous sommes le mardi 16 juin.\n                    \n                    DONNÉES BRUTES :\n                    10:00-10:55: Histoire-géographie (Prof: Durand m.) (S301) [Devoirs: Donné le 16\/06\/2026 : Apprendre les dates clés de la colonisation (fiche distribuée). Interrogation écrite le 20\/06\/2026.]\n11:00-13:55: Sortie pédagogique - Musée des Sciences (Extérieur) [Devoirs: Donné le 16\/06\/2026 : Rédiger un compte-rendu de visite (1 page min) en lien avec le cours sur l'énergie. À rendre le 19\/06\/2026.]\n12:00-12:55: Espagnol (Prof: Garcia s.) (S102) [Devoirs: Donné le 16\/06\/2026 : Réviser le vocabulaire de Valencia (liste de mots p.54) et les structures grammaticales du passé composé. Contrôle le 16\/06\/2026 à 14h.]\n16:00-16:55: Espagnol (Prof: Garcia s.) (S102)\n18:00-18:55: Histoire-géographie (Prof: Durand m.) (S301)\n                    Météo: Partiellement nuageux, Température: 20.6°C le matin, 26.6°C l'après-midi.\n                    \n                    CONSIGNES DE RÉDACTION (STRICTES) :\n                    1. Rédige une SYNTHÈSE de 2 lignes maximum.\n                    2. NE FAIS PAS de liste. NE répète PAS tous les cours.\n                    3. Identifie l'élément le plus important (ex: un cours tôt, un DS, une après-midi libre, ou la météo).\n                    4. Utilise un ton amical et motivant.\n                    5. Si tu mentionnes une heure, utilise EXCLUSIVEMENT celles des données brutes.\n                    \n                    EXEMPLE DE RÉPONSE ATTENDUE :\n                    \"Bonjour Julie ! Une petite matinée t'attend avec ton DS de Philo à 10h. Profite bien de ton après-midi libre sous le soleil (18°C) !\"\n                    \n                    Réponds uniquement avec le texte du briefing.",
+    "response": "Trop de requêtes d'un coup. Patiente un instant.",
+    "render_info": "Student: Julie",
+    "comment": ""
   }
 ]
