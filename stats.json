@@ -206,6 +206,16 @@
       "total_ai_credits": 3,
       "weekly_ai_credits": 2,
       "monthly_ai_credits": 2
+    },
+    "dab91b70-699e-4e20-b6ea-dacd69774946": {
+      "city": "",
+      "region": "",
+      "device_model": "",
+      "device_manufacturer": "",
+      "android_api": 0,
+      "total_ai_credits": 0,
+      "weekly_ai_credits": 0,
+      "monthly_ai_credits": 0
     }
   }
 }
