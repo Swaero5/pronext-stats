@@ -123,5 +123,16 @@
     "response": "Trop de requêtes d'un coup. Patiente un instant.",
     "render_info": "Student: Julie",
     "comment": ""
+  },
+  {
+    "id": "6eeec6f2-b286-4339-93b0-1f35a9d31508",
+    "date": "2026-06-22 18:01:05",
+    "subject": "Briefing IA",
+    "homework": "2026-06-22",
+    "strategy": "BRIEFING",
+    "prompt": "                    Tu es un assistant \"NowBrief\" pour un étudiant nommé [ELEVE].\n                    Aujourd'hui : lundi 22 juin.\n                    \n                    DONNÉES :\n                    09:00-10:00: Francais (Prof: Gallet b.) (105)\n10:00-11:00: Histoire-géographie (Prof: Moreau c.) (206)\n11:00-12:00: Mathématiques (Prof: Professeur m.) (207) [Devoirs: Donné le 18\/06\/2026 : Exercices n° 2 à 4\nDonné le 18\/06\/2026 : Enoncez votre raisonnement\nPour le 25\/06\/2026 : Exercices n° 2 à 4\nPour le 25\/06\/2026 : Enoncez votre raisonnement]\n13:30-14:30: Sciences De La Vie Et De La Terre (Prof: Tessier a.) (Labo 2)\n14:30-15:30: Anglais Lv1 (Prof: Brown j.) (103)\n15:30-16:30: Éducation Physique Et Sportive (Prof: Roux n.) (Piscine municipale)\n                    Météo: Ciel dégagé, Température: 33.9°C le matin, 38.1°C l'après-midi.\n                    \n                    CONSIGNES DE RÉDACTION :\n                    1. Rédige une synthèse \"coup d'œil\" de 2 lignes maximum.\n                    2. Priorité : Heure de fin de journée, DS important ou après-midi libre.\n                    3. Mentionne les devoirs si critiques.\n                    4. Ton : Dynamique, amical et très direct (style assistant intelligent).\n                    5. Pas de liste. Utilise exclusivement les heures fournies.\n                    \n                    EXEMPLE :\n                    \"Salut [ELEVE] ! Belle journée en vue, tu termines à 15h30. N'oublie pas ton projet de NSI. Météo : Ciel dégagé (14°C).\"\n                    \n                    Réponds uniquement avec le texte du briefing.",
+    "response": "Salut [ELEVE] ! Journée intense avec 38°C l'après-midi, tu termines à 16h30 à la piscine. Pense à tes exercices de maths pour le 25\/06, c'est le moment de t'avancer !",
+    "render_info": "Briefing Screen",
+    "comment": "les horaires sont faux"
   }
 ]
