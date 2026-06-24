@@ -23,39 +23,5 @@
   },
   "2026-05-29": {
     "d5d32fed-cce0-4308-92b0-ba7f8adba850": 1
-  },
-  "2026-06-22": {
-    "5377fa8c-2651-431d-be73-6b23bbddfd5b": {
-      "city": "Saint-Herblain",
-      "region": "Pays de la Loire",
-      "device_model": "WIKO T10",
-      "device_manufacturer": "WIKO",
-      "android_api": 30,
-      "total_ai_credits": 2,
-      "weekly_ai_credits": 0,
-      "monthly_ai_credits": 0
-    },
-    "6166a759-3292-4249-b3e9-01986e2df933": {
-      "city": "Saint-Herblain",
-      "region": "Pays de la Loire",
-      "device_model": "SM-S918B",
-      "device_manufacturer": "samsung",
-      "android_api": 36,
-      "total_ai_credits": 3,
-      "weekly_ai_credits": 0,
-      "monthly_ai_credits": 2
-    }
-  },
-  "2026-06-24": {
-    "6166a759-3292-4249-b3e9-01986e2df933": {
-      "city": "Saint-Herblain",
-      "region": "Pays de la Loire",
-      "device_model": "SM-S918B",
-      "device_manufacturer": "samsung",
-      "android_api": 36,
-      "total_ai_credits": 3,
-      "weekly_ai_credits": 0,
-      "monthly_ai_credits": 2
-    }
   }
 }
