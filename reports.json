@@ -145,5 +145,16 @@
     "response": "Grosse journée [ELEVE], avec ton DS de philo à 16h ! N'oublie pas ton étude sur la forêt de Brocéliande pour demain. Il va faire très chaud, jusqu'à 41.8°C, alors hydrate-toi bien. Tu finis ta journée à 18h55.",
     "render_info": "Briefing Screen",
     "comment": ""
+  },
+  {
+    "id": "5377fa8c-2651-431d-be73-6b23bbddfd5b",
+    "date": "2026-06-28 15:04:42",
+    "subject": "Briefing IA",
+    "homework": "2026-06-28",
+    "strategy": "BRIEFING",
+    "prompt": "TEMPLATE_MODE",
+    "response": "Hello [ELEVE], Il fera 21°C ce matin et jusqu'à 25°C l'après-midi. Rien au programme, c'est tout bon ! Courage !",
+    "render_info": "Briefing Screen",
+    "comment": "ça met Hello étudiant alors que je ne m'appelle pas comme ça"
   }
 ]
