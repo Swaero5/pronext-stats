@@ -194,5 +194,16 @@
     "response": "{\"questions\":[{\"question\":\"Qui crée la majorité de la monnaie en circulation dans l'économie ?\",\"options\":[\"La Banque centrale\",\"Le Trésor public\",\"Les banques commerciales\",\"Les ménages\"],\"correctIndex\":2,\"explanation\":\"La monnaie est principalement créée par les banques commerciales lors de l'octroi de crédits aux agents économiques.\"},{\"question\":\"Quelle opération est à l'origine de la création monétaire ?\",\"options\":[\"Le dépôt d'épargne\",\"L'octroi d'un crédit\",\"Le paiement par carte\",\"L'achat d'obligations\"],\"correctIndex\":1,\"explanation\":\"Lorsqu'une banque accorde un prêt, elle crédite le compte du client, créant ainsi une nouvelle monnaie scripturale.\"},{\"question\":\"Qu'est-ce que la monnaie scripturale ?\",\"options\":[\"Monnaie métallique\",\"Monnaie fiduciaire\",\"Monnaie sous forme d'écriture sur compte bancaire\",\"Monnaie étrangère\"],\"correctIndex\":2,\"explanation\":\"La monnaie scripturale représente la majorité de la masse monétaire et correspond aux soldes inscrits sur les comptes bancaires.\"},{\"question\":\"Quel est le principal rôle de la Banque centrale dans la création monétaire ?\",\"options\":[\"Prêter directement aux ménages\",\"Fixer les taux directeurs\",\"Gérer les comptes d'épargne\",\"Imprimer les pièces de monnaie\"],\"correctIndex\":1,\"explanation\":\"La Banque centrale pilote la création monétaire en influençant le coût du refinancement des banques via ses taux directeurs.\"},{\"question\":\"Pourquoi les banques doivent-elles se refinancer auprès de la Banque centrale ?\",\"options\":[\"Pour augmenter leurs profits\",\"Pour compenser les fuites de monnaie vers d'autres banques\",\"Pour stocker de l'or\",\"Pour payer les employés\"],\"correctIndex\":1,\"explanation\":\"Les banques doivent se refinancer pour équilibrer leurs comptes lors des règlements interbancaires et assurer la liquidité.\"},{\"question\":\"Qu'est-ce que la base monétaire ?\",\"options\":[\"La monnaie totale en circulation\",\"La monnaie centrale émise par la Banque centrale\",\"Le montant des intérêts bancaires\",\"Le total des crédits immobiliers\"],\"correctIndex\":1,\"explanation\":\"La base monétaire est constituée de la monnaie fiduciaire et des réserves des banques déposées auprès de la Banque centrale.\"}]}",
     "render_info": "Subject: Ses",
     "comment": ""
+  },
+  {
+    "id": "c8b35bd90222eef4",
+    "date": "2026-08-23 23:14:12",
+    "subject": "PRONOTE_LOGIN",
+    "homework": "Login Error",
+    "strategy": "GENERAL_REPORT",
+    "prompt": "URL: https:\/\/0440029t.index-education.net\/pronote\/eleve.html",
+    "response": "N\/A",
+    "render_info": "App Version: 1.4.1",
+    "comment": "pronote ne marche pas"
   }
 ]
