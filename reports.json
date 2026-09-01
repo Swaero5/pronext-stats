@@ -205,5 +205,16 @@
     "response": "N\/A",
     "render_info": "App Version: 1.4.1",
     "comment": "pronote ne marche pas"
+  },
+  {
+    "id": "c8b35bd90222eef4",
+    "date": "2026-09-01 11:40:42",
+    "subject": "PRONOTE_LOGIN",
+    "homework": "Login Error",
+    "strategy": "GENERAL_REPORT",
+    "prompt": "URL: https:\/\/demo.index-education.net\/pronote\/mobile.eleve.html?redirect=1",
+    "response": "N\/A",
+    "render_info": "App Version: 1.4.1",
+    "comment": "page blanche"
   }
 ]
