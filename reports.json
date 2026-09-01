@@ -216,5 +216,16 @@
     "response": "N\/A",
     "render_info": "App Version: 1.4.1",
     "comment": "page blanche"
+  },
+  {
+    "id": "c8b35bd90222eef4",
+    "date": "2026-09-01 12:18:59",
+    "subject": "PRONOTE_LOGIN",
+    "homework": "Login Error",
+    "strategy": "GENERAL_REPORT",
+    "prompt": "URL: https:\/\/educonnect.education.gouv.fr\/idp\/profile\/SAML2\/Redirect\/SSO?execution=e1s2",
+    "response": "N\/A",
+    "render_info": "App Version: 1.4.1",
+    "comment": ""
   }
 ]
